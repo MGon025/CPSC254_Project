@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pacman.png-06a4fa5f445fe00d72fe5ee17cf9c875.stex"
+path="res://.import/enemyScared.png-131d018a4bbd5cae084d8c2591347871.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/pacman.png"
-dest_files=[ "res://.import/pacman.png-06a4fa5f445fe00d72fe5ee17cf9c875.stex" ]
+source_file="res://Sprites/enemyScared.png"
+dest_files=[ "res://.import/enemyScared.png-131d018a4bbd5cae084d8c2591347871.stex" ]
 
 [params]
 
