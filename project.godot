@@ -23,6 +23,10 @@ _global_script_class_icons={
 config/name="init"
 config/icon="res://icon.png"
 
+[debug]
+
+settings/fps/force_fps=30
+
 [gdnative]
 
 singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
