@@ -27,6 +27,15 @@ config/icon="res://icon.png"
 
 settings/fps/force_fps=30
 
+[display]
+
+window/dpi/allow_hidpi=true
+window/vsync/use_vsync=false
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
+
 [gdnative]
 
 singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
