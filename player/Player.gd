@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+var max_lives: int = 3
+var lives: int = max_lives
+
 var speed: int = 100
 var force: Vector2 = Vector2(speed, 0.0)
 
@@ -32,3 +35,7 @@ func movement() -> Vector2:
 		force = Vector2(-speed, 0)
 	
 	return move_and_slide(force)
+
+func take_life(damage: int):
+	# lives should always be between 0 and max_lives
+	lives = min(max(lives-damage, 0), max_lives)
