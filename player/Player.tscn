@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://player/Player.gd" type="Script" id=1]
+[ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/player.png" type="Texture" id=2]
 [ext_resource path="res://player/playermove.tres" type="Animation" id=3]
 
