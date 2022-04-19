@@ -6,7 +6,7 @@ var force: Vector2 = Vector2(speed, 0.0)
 onready var move_sprite: Sprite = get_node("Move")
 onready var death_sprite: Sprite = get_node("Death")
 onready var anim_tree: AnimationTree = get_node("AnimationTree")
-onready var start_pos: Vector2 = get_position()
+onready var life_bar: Sprite = get_node("../LifeBar")
 
 func _input(_event):
 	# for debbugging
@@ -54,14 +54,14 @@ func movement() -> Vector2:
 func take_life(damage: int):
 	# lives should always be between 0 and MAX_LIVES
 	# warning-ignore:narrowing_conversion
-	var old_life = Global.lives
-	Global.lives = min(max(Global.lives - damage, 0), Global.MAX_LIVES)
+	var old_lives = Global.lives
+	Global.lives = min(max(Global.lives - damage, -1), Global.MAX_LIVES)
 
 	# early exit case for unit testing
 	if move_sprite == null:
 		return
 
-	#TODO: death sequence
+	# death
 	if damage > 0:
 		#TODO: Pause everything except player
 		set_physics_process(false)
@@ -69,24 +69,27 @@ func take_life(damage: int):
 		death_sprite.visible = true
 		anim_tree.set("parameters/state/current", 1)
 
-		print("player died. " + str(old_life) + " - "\
+		print("player died. " + str(old_lives) + " - "\
 				+ str(damage) + " = " + str(Global.lives))
 
-	#TODO: healing sequence
+	# healing
 	elif damage < 0:
-		# play healing sfx
+		#TODO: play healing sfx
+		if life_bar != null:
+			life_bar.frame = Global.lives
 
-		print("player healed. " + str(old_life) + " + "\
+		print("player healed. " + str(old_lives) + " + "\
 				+ str(damage) + " = " + str(Global.lives))
-
-	#TODO: gameover sequence
-	if Global.lives == 0:
-		#TODO: Pause everything except player
-		#TODO: choose restart game or go to main menu
-		print("game over")
 
 
 func respawn():
 	# called by death animation
+	if Global.lives == -1:
+		Global.lives = Global.MAX_LIVES - 1
+		#TODO: Pause everything except player
+		#TODO: choose restart game or go to main menu
+		print("game over")
+
 	# warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
+

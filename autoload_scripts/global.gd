@@ -1,4 +1,4 @@
 extends Node
 
 const MAX_LIVES: int = 3
-var lives: int = MAX_LIVES
+onready var lives: int = MAX_LIVES - 1
