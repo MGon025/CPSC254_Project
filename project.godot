@@ -23,6 +23,10 @@ _global_script_class_icons={
 config/name="init"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://autoload_scripts/global.gd"
+
 [debug]
 
 settings/fps/force_fps=30

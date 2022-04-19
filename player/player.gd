@@ -1,13 +1,12 @@
 extends KinematicBody2D
 
-const MAX_LIVES: int = 3
-var lives: int = MAX_LIVES
-
 var speed: float = 100.0
 var force: Vector2 = Vector2(speed, 0.0)
 
 onready var move_sprite: Sprite = get_node("Move")
 onready var death_sprite: Sprite = get_node("Death")
+onready var anim_tree: AnimationTree = get_node("AnimationTree")
+onready var start_pos: Vector2 = get_position()
 
 func _input(_event):
 	# for debbugging
@@ -26,7 +25,7 @@ func _physics_process(_delta):
 func animation(velocity: Vector2):
 	# stop animation when velocity = (0,0)
 	var movement_time: float = 1.0 if velocity else 0.0
-	$AnimationTree.set("parameters/movement_time/scale", movement_time)
+	anim_tree.set("parameters/movement_time/scale", movement_time)
 
 	# adjust rotation based on movement direction
 	if force.y < 0.0:
@@ -55,8 +54,8 @@ func movement() -> Vector2:
 func take_life(damage: int):
 	# lives should always be between 0 and MAX_LIVES
 	# warning-ignore:narrowing_conversion
-	var old_life = lives
-	lives = min(max(lives - damage, 0), MAX_LIVES)
+	var old_life = Global.lives
+	Global.lives = min(max(Global.lives - damage, 0), Global.MAX_LIVES)
 
 	# early exit case for unit testing
 	if move_sprite == null:
@@ -65,22 +64,23 @@ func take_life(damage: int):
 	#TODO: death sequence
 	if damage > 0:
 		#TODO: Pause everything except player
+		set_physics_process(false)
 		move_sprite.visible = false
 		death_sprite.visible = true
-		$AnimationTree.set("parameters/state/current", 1)
+		anim_tree.set("parameters/state/current", 1)
 
 		print("player died. " + str(old_life) + " - "\
-				+ str(damage) + " = " + str(lives))
+				+ str(damage) + " = " + str(Global.lives))
 
 	#TODO: healing sequence
 	elif damage < 0:
 		# play healing sfx
 
 		print("player healed. " + str(old_life) + " + "\
-				+ str(damage) + " = " + str(lives))
+				+ str(damage) + " = " + str(Global.lives))
 
 	#TODO: gameover sequence
-	if lives == 0:
+	if Global.lives == 0:
 		#TODO: Pause everything except player
 		#TODO: choose restart game or go to main menu
 		print("game over")
@@ -88,6 +88,5 @@ func take_life(damage: int):
 
 func respawn():
 	# called by death animation
-	move_sprite.visible = true
-	death_sprite.visible = false
-	$AnimationTree.set("parameters/state/current", 0)
+	# warning-ignore:return_value_discarded
+	get_tree().reload_current_scene()
