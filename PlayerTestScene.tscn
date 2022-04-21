@@ -51,9 +51,16 @@ scale = Vector2( 25, 25 )
 position = Vector2( 763, 500 )
 scale = Vector2( 25, 25 )
 
-[node name="LifeBar" type="Sprite" parent="."]
+[node name="Lifebar" type="Sprite" parent="."]
 position = Vector2( 192, 581 )
 texture = ExtResource( 4 )
 vframes = 4
 frame = 3
 script = ExtResource( 5 )
+
+[node name="Scoreboard" type="TextEdit" parent="."]
+margin_left = 531.0
+margin_top = 571.0
+margin_right = 744.0
+margin_bottom = 593.0
+text = "0"

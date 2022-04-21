@@ -6,7 +6,8 @@ var force: Vector2 = Vector2(speed, 0.0)
 onready var move_sprite: Sprite = get_node("Move")
 onready var death_sprite: Sprite = get_node("Death")
 onready var anim_tree: AnimationTree = get_node("AnimationTree")
-onready var life_bar: Sprite = get_node("../LifeBar")
+onready var life_bar: Sprite = get_node("../Lifebar")
+onready var scoreboard: TextEdit = get_node("../Scoreboard")
 
 func _input(_event):
 	# for debbugging
@@ -51,11 +52,17 @@ func movement() -> Vector2:
 	return move_and_slide(force)
 
 
+func add_score(amount: int):
+	# score should be between 0 and MAX_INT
+	Global.score = int(max(Global.score + amount, 0))\
+			if (Global.MAX_INT - Global.score) > amount\
+			else Global.MAX_INT
+
+
 func take_life(damage: int):
 	# lives should always be between 0 and MAX_LIVES
-	# warning-ignore:narrowing_conversion
 	var old_lives = Global.lives
-	Global.lives = min(max(Global.lives - damage, -1), Global.MAX_LIVES)
+	Global.lives = int(min(max(Global.lives - damage, -1), Global.MAX_LIVES))
 
 	# early exit case for unit testing
 	if move_sprite == null:

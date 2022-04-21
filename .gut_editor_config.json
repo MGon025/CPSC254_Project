@@ -8,7 +8,7 @@
  "double_strategy": "partial",
  "font_color": "ffcccccc",
  "font_name": "CourierPrime",
- "font_size": 30,
+ "font_size": 15,
  "hide_orphans": false,
  "ignore_pause": true,
  "include_subdirs": false,
