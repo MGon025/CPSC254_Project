@@ -109,6 +109,7 @@ func respawn():
 	# called by death animation
 	if Global.lives == -1:
 		Global.lives = Global.MAX_LIVES - 1
+		Global.score = 0
 		#TODO: Pause everything except player
 		#TODO: choose restart game or go to main menu
 		print("game over")
