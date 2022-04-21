@@ -9,14 +9,27 @@ onready var anim_tree: AnimationTree = get_node("AnimationTree")
 onready var life_bar: Sprite = get_node("../Lifebar")
 onready var scoreboard: TextEdit = get_node("../Scoreboard")
 
+
+func _ready():
+	life_bar.frame = Global.lives
+	scoreboard.text = str(Global.score)
+
+
 func _input(_event):
 	# for debbugging
 	if Input.is_physical_key_pressed(KEY_Z):
 		take_life(1)
 	elif Input.is_physical_key_pressed(KEY_X):
 		take_life(-1)
+	elif Input.is_physical_key_pressed(KEY_C):
+		add_score(10)
+	elif Input.is_physical_key_pressed(KEY_V):
+		add_score(100)
+	elif Input.is_physical_key_pressed(KEY_B):
+		add_score(-100)
 
 	#TODO: Pause menu
+
 
 func _physics_process(_delta):
 	var curr_vel: Vector2 = movement()
@@ -57,6 +70,9 @@ func add_score(amount: int):
 	Global.score = int(max(Global.score + amount, 0))\
 			if (Global.MAX_INT - Global.score) > amount\
 			else Global.MAX_INT
+
+	if scoreboard != null:
+		scoreboard.text = str(Global.score)
 
 
 func take_life(damage: int):
