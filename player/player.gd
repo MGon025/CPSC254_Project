@@ -6,7 +6,14 @@ var force: Vector2 = Vector2(speed, 0.0)
 onready var move_sprite: Sprite = get_node("Move")
 onready var death_sprite: Sprite = get_node("Death")
 onready var anim_tree: AnimationTree = get_node("AnimationTree")
-onready var life_bar: Sprite = get_node("../LifeBar")
+onready var life_bar: Sprite = get_node("../Lifebar")
+onready var scoreboard: TextEdit = get_node("../Scoreboard")
+
+
+func _ready():
+	life_bar.frame = Global.lives
+	scoreboard.text = str(Global.score)
+
 
 func _input(_event):
 	# for debbugging
@@ -14,8 +21,15 @@ func _input(_event):
 		take_life(1)
 	elif Input.is_physical_key_pressed(KEY_X):
 		take_life(-1)
+	elif Input.is_physical_key_pressed(KEY_C):
+		add_score(10)
+	elif Input.is_physical_key_pressed(KEY_V):
+		add_score(100)
+	elif Input.is_physical_key_pressed(KEY_B):
+		add_score(-100)
 
 	#TODO: Pause menu
+
 
 func _physics_process(_delta):
 	var curr_vel: Vector2 = movement()
@@ -51,11 +65,20 @@ func movement() -> Vector2:
 	return move_and_slide(force)
 
 
+func add_score(amount: int):
+	# score should be between 0 and MAX_INT
+	Global.score = int(max(Global.score + amount, 0))\
+			if (Global.MAX_INT - Global.score) > amount\
+			else Global.MAX_INT
+
+	if scoreboard != null:
+		scoreboard.text = str(Global.score)
+
+
 func take_life(damage: int):
 	# lives should always be between 0 and MAX_LIVES
-	# warning-ignore:narrowing_conversion
 	var old_lives = Global.lives
-	Global.lives = min(max(Global.lives - damage, -1), Global.MAX_LIVES)
+	Global.lives = int(min(max(Global.lives - damage, -1), Global.MAX_LIVES))
 
 	# early exit case for unit testing
 	if move_sprite == null:
@@ -86,6 +109,7 @@ func respawn():
 	# called by death animation
 	if Global.lives == -1:
 		Global.lives = Global.MAX_LIVES - 1
+		Global.score = 0
 		#TODO: Pause everything except player
 		#TODO: choose restart game or go to main menu
 		print("game over")
