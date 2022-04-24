@@ -21,6 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="init"
+run/main_scene="res://maze.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -38,7 +39,7 @@ window/vsync/use_vsync=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [gdnative]
 

@@ -12,7 +12,7 @@ onready var scoreboard: TextEdit = get_node("../Scoreboard")
 
 func _ready():
 	life_bar.frame = Global.lives
-	scoreboard.text = str(Global.score)
+#	scoreboard.text = str(Global.score)
 
 
 func _input(_event):
