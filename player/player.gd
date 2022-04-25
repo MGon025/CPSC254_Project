@@ -140,6 +140,7 @@ func take_life(damage: int):
 	if damage > 0:
 		#TODO: Pause everything except player
 		set_physics_process(false)
+		$CollisionShape2D.set_deferred("disabled", true)
 		move_sprite.visible = false
 		death_sprite.visible = true
 		anim_tree.set("parameters/state/current", 1)
@@ -168,9 +169,8 @@ func respawn():
 	set_physics_process(true)
 	move_sprite.visible = true
 	death_sprite.visible = false
+	$CollisionShape2D.set_deferred("disabled", false)
 	anim_tree.set("parameters/state/current", 0)
 	_curr_action = null
 	_next_action = null
-	# warning-ignore:return_value_discarded
-	# get_tree().reload_current_scene()
 
