@@ -1,13 +1,21 @@
 extends KinematicBody2D
 
-var speed: float = 100.0
-var force: Vector2 = Vector2(speed, 0.0)
+
+signal score_changed
+signal powered_up
+signal powered_down
+
+
+var _speed: float = 100.0
+var _force: Vector2 = Vector2(_speed, 0.0)
+var _powered: bool = false
+
 
 onready var move_sprite: Sprite = get_node("Move")
 onready var death_sprite: Sprite = get_node("Death")
 onready var anim_tree: AnimationTree = get_node("AnimationTree")
 onready var life_bar: Sprite = get_node("../Lifebar")
-onready var scoreboard: TextEdit = get_node("../Scoreboard")
+onready var scoreboard: Label = get_node("../score")
 
 
 func _ready():
@@ -32,37 +40,37 @@ func _input(_event):
 
 
 func _physics_process(_delta):
-	var curr_vel: Vector2 = movement()
-	animation(curr_vel)
+	var curr_vel: Vector2 = _movement()
+	_animation(curr_vel)
 
 
-func animation(velocity: Vector2):
+func _animation(velocity: Vector2):
 	# stop animation when velocity = (0,0)
 	var movement_time: float = 1.0 if velocity else 0.0
 	anim_tree.set("parameters/movement_time/scale", movement_time)
 
 	# adjust rotation based on movement direction
-	if force.y < 0.0:
+	if _force.y < 0.0:
 		move_sprite.set_rotation(-PI / 2)
-	elif force.x > 0.0:
+	elif _force.x > 0.0:
 		move_sprite.set_rotation(0.0)
-	elif force.y > 0.0:
+	elif _force.y > 0.0:
 		move_sprite.set_rotation(PI / 2)
-	elif force.x < 0.0:
+	elif _force.x < 0.0:
 		move_sprite.set_rotation(PI)
 
 
-func movement() -> Vector2:
+func _movement() -> Vector2:
 	if Input.is_action_just_pressed("ui_up"):
-		force = Vector2(0.0, -speed)
+		_force = Vector2(0.0, -_speed)
 	elif Input.is_action_just_pressed("ui_right"):
-		force = Vector2(speed, 0.0)
+		_force = Vector2(_speed, 0.0)
 	elif Input.is_action_just_pressed("ui_down"):
-		force = Vector2(0.0, speed)
+		_force = Vector2(0.0, _speed)
 	elif Input.is_action_just_pressed("ui_left"):
-		force = Vector2(-speed, 0.0)
+		_force = Vector2(-_speed, 0.0)
 
-	return move_and_slide(force)
+	return move_and_slide(_force)
 
 
 func add_score(amount: int):
@@ -70,9 +78,16 @@ func add_score(amount: int):
 	Global.score = int(max(Global.score + amount, 0))\
 			if (Global.MAX_INT - Global.score) > amount\
 			else Global.MAX_INT
+	emit_signal("score_changed")
 
-	if scoreboard != null:
-		scoreboard.text = str(Global.score)
+
+func power_up():
+	print("player can kill")
+	emit_signal("powered_up")
+	_powered = !_powered
+	#TODO: wait several seconds
+	_powered = !_powered
+	emit_signal("powered_down")
 
 
 func take_life(damage: int):
@@ -106,7 +121,7 @@ func take_life(damage: int):
 
 
 func respawn():
-	# called by death animation
+	# called by player death animation
 	if Global.lives == -1:
 		Global.lives = Global.MAX_LIVES - 1
 		Global.score = 0
