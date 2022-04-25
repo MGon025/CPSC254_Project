@@ -25,7 +25,7 @@ input_1/name = "death"
 input_1/auto_advance = false
 
 [sub_resource type="AnimationNodeBlendTree" id=4]
-graph_offset = Vector2( -430.045, 12.2083 )
+graph_offset = Vector2( -332, 65.5 )
 nodes/death/node = SubResource( 10 )
 nodes/death/position = Vector2( -160, 220 )
 nodes/movement/node = SubResource( 9 )
@@ -63,3 +63,43 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/movement_time/scale = 1.0
 parameters/state/current = 0
+
+[node name="RayDown1" type="RayCast2D" parent="."]
+position = Vector2( -4, 5 )
+enabled = true
+cast_to = Vector2( 0, 8 )
+
+[node name="RayDown2" type="RayCast2D" parent="."]
+position = Vector2( 4, 5 )
+enabled = true
+cast_to = Vector2( 0, 8 )
+
+[node name="RayUp1" type="RayCast2D" parent="."]
+position = Vector2( -4, -5 )
+enabled = true
+cast_to = Vector2( 0, -8 )
+
+[node name="RayUp2" type="RayCast2D" parent="."]
+position = Vector2( 4, -5 )
+enabled = true
+cast_to = Vector2( 0, -8 )
+
+[node name="RayRight1" type="RayCast2D" parent="."]
+position = Vector2( 5, -4 )
+enabled = true
+cast_to = Vector2( 8, 0 )
+
+[node name="RayRight2" type="RayCast2D" parent="."]
+position = Vector2( 5, 4 )
+enabled = true
+cast_to = Vector2( 8, 0 )
+
+[node name="RayLeft1" type="RayCast2D" parent="."]
+position = Vector2( -5, -4 )
+enabled = true
+cast_to = Vector2( -8, 0 )
+
+[node name="RayLeft2" type="RayCast2D" parent="."]
+position = Vector2( -5, 4 )
+enabled = true
+cast_to = Vector2( -8, 0 )
