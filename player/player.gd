@@ -1,18 +1,36 @@
 extends KinematicBody2D
 
-var speed: float = 100.0
-var force: Vector2 = Vector2(speed, 0.0)
+signal score_changed
+signal lives_changed
+signal powered_up
+signal powered_down
 
+enum Action {UP, RIGHT, DOWN, LEFT}
+
+var _speed: float = 80.0
+var _force: Vector2 = Vector2.ZERO
+var _direction = null
+var _curr_action = null
+var _next_action = null
+var _powered: bool = false
+
+onready var _start_pos = get_position()
+
+# animation nodes
 onready var move_sprite: Sprite = get_node("Move")
 onready var death_sprite: Sprite = get_node("Death")
 onready var anim_tree: AnimationTree = get_node("AnimationTree")
-onready var life_bar: Sprite = get_node("../Lifebar")
-onready var scoreboard: TextEdit = get_node("../Scoreboard")
+
+# for queueing movement
+onready var ray_down = [get_node("RayDown1"), get_node("RayDown2")]
+onready var ray_up = [get_node("RayUp1"), get_node("RayUp2")]
+onready var ray_right = [get_node("RayRight1"), get_node("RayRight2")]
+onready var ray_left = [get_node("RayLeft1"), get_node("RayLeft2")]
 
 
 func _ready():
-	life_bar.frame = Global.lives
-	scoreboard.text = str(Global.score)
+	# _next_action = Action.RIGHT
+	_direction = ray_right
 
 
 func _input(_event):
@@ -28,41 +46,68 @@ func _input(_event):
 	elif Input.is_physical_key_pressed(KEY_B):
 		add_score(-100)
 
-	#TODO: Pause menu
+
+func _queue_movement():
+	if Input.is_action_just_pressed("ui_up"):
+		_direction = ray_up
+		_next_action = Action.UP
+	elif Input.is_action_just_pressed("ui_right"):
+		_direction = ray_right
+		_next_action = Action.RIGHT
+	elif Input.is_action_just_pressed("ui_down"):
+		_direction = ray_down
+		_next_action = Action.DOWN
+	elif Input.is_action_just_pressed("ui_left"):
+		_direction = ray_left
+		_next_action = Action.LEFT
 
 
 func _physics_process(_delta):
-	var curr_vel: Vector2 = movement()
-	animation(curr_vel)
+	_queue_movement()
+	_update_action()
+	var curr_vel: Vector2 = _movement()
+	_animation(curr_vel)
 
 
-func animation(velocity: Vector2):
+func _update_action():
+	var change_action: bool = true
+	for raycast in _direction:
+		if raycast.get_collider() is TileMap:
+			change_action = false
+	if change_action:
+		_curr_action = _next_action
+
+
+func _animation(velocity: Vector2):
 	# stop animation when velocity = (0,0)
 	var movement_time: float = 1.0 if velocity else 0.0
 	anim_tree.set("parameters/movement_time/scale", movement_time)
 
 	# adjust rotation based on movement direction
-	if force.y < 0.0:
+	if _force.y < 0.0:
 		move_sprite.set_rotation(-PI / 2)
-	elif force.x > 0.0:
+	elif _force.x > 0.0:
 		move_sprite.set_rotation(0.0)
-	elif force.y > 0.0:
+	elif _force.y > 0.0:
 		move_sprite.set_rotation(PI / 2)
-	elif force.x < 0.0:
+	elif _force.x < 0.0:
 		move_sprite.set_rotation(PI)
 
 
-func movement() -> Vector2:
-	if Input.is_action_just_pressed("ui_up"):
-		force = Vector2(0.0, -speed)
-	elif Input.is_action_just_pressed("ui_right"):
-		force = Vector2(speed, 0.0)
-	elif Input.is_action_just_pressed("ui_down"):
-		force = Vector2(0.0, speed)
-	elif Input.is_action_just_pressed("ui_left"):
-		force = Vector2(-speed, 0.0)
+func _movement() -> Vector2:
+	match _curr_action:
+		Action.UP:
+			_force = Vector2(0.0, -_speed)
+		Action.RIGHT:
+			_force = Vector2(_speed, 0.0)
+		Action.DOWN:
+			_force = Vector2(0.0, _speed)
+		Action.LEFT:
+			_force = Vector2(-_speed, 0.0)
+		_:
+			_force = Vector2.ZERO
 
-	return move_and_slide(force)
+	return move_and_slide(_force)
 
 
 func add_score(amount: int):
@@ -70,9 +115,16 @@ func add_score(amount: int):
 	Global.score = int(max(Global.score + amount, 0))\
 			if (Global.MAX_INT - Global.score) > amount\
 			else Global.MAX_INT
+	emit_signal("score_changed")
 
-	if scoreboard != null:
-		scoreboard.text = str(Global.score)
+
+func power_up():
+	print("player can kill")
+	emit_signal("powered_up")
+	_powered = !_powered
+	#TODO: wait several seconds
+	_powered = !_powered
+	emit_signal("powered_down")
 
 
 func take_life(damage: int):
@@ -98,15 +150,13 @@ func take_life(damage: int):
 	# healing
 	elif damage < 0:
 		#TODO: play healing sfx
-		if life_bar != null:
-			life_bar.frame = Global.lives
-
+		emit_signal("lives_changed")
 		print("player healed. " + str(old_lives) + " + "\
 				+ str(damage) + " = " + str(Global.lives))
 
 
 func respawn():
-	# called by death animation
+	# called by player death animation
 	if Global.lives == -1:
 		Global.lives = Global.MAX_LIVES - 1
 		Global.score = 0
@@ -114,6 +164,13 @@ func respawn():
 		#TODO: choose restart game or go to main menu
 		print("game over")
 
+	set_position(_start_pos)
+	set_physics_process(true)
+	move_sprite.visible = true
+	death_sprite.visible = false
+	anim_tree.set("parameters/state/current", 0)
+	_curr_action = null
+	_next_action = null
 	# warning-ignore:return_value_discarded
-	get_tree().reload_current_scene()
+	# get_tree().reload_current_scene()
 
