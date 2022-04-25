@@ -4,6 +4,8 @@ var speed: int = 100
 var force: Vector2 = Vector2(speed, 0.0)
 var current_direction: int = 1 # 0 = UP, 1 = RIGHT, 2 = DOWN, 3 = LEFT
 
+onready var player_body: KinematicBody2D = get_node("../Player")
+
 func _physics_process(_delta):
 	var curr_vel: Vector2 = movement()
 	animation(curr_vel)
@@ -12,7 +14,7 @@ func animation(velocity: Vector2):
 	# stop animation when velocity = (0,0)
 	$AnimationTree.active = true if velocity else false
 
-	# adjust sprite rotation based on movement direction
+	# change row on spritesheet depending on direction of movement
 	if force.y < 0:
 		$Sprite.frame_coords.y = 2
 	elif force.x > 0:
@@ -23,11 +25,19 @@ func animation(velocity: Vector2):
 		$Sprite.frame_coords.y = 3
 
 func movement() -> Vector2:
-	if rand_range(0, 1) <= 0.3: # 30% chance to change direction.
-		if rand_range(0, 1) <= 0.5:
-			current_direction += 1
-		else:
-			current_direction -= 1
+	var gap:int = 3
+			
+	if position.x + gap < player_body.position.x:
+		current_direction = 1
+	elif position.x - gap > player_body.position.x:
+		current_direction = 3
+	elif position.y + gap < player_body.position.y:
+		current_direction = 2
+	elif position.y - gap > player_body.position.y:
+		current_direction = 0
+			
+	if current_direction < 0:
+		current_direction += 4
 	
 	if current_direction % 4 == 0:
 		force = Vector2(0, -speed)
