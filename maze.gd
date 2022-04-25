@@ -10,8 +10,8 @@ func _powerup_get():
 	$score.text = "Score:" + str(score)
 
 func _small_item_get():
-	score = score + 50
-	$score.text = "Score:" + str(score)
+	pass
+	# $score.text = Global.score
 
 func _big_item_get():
 	score = score + 200

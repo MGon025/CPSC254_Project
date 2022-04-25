@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/lifebar.png" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://point_big.gd" type="Script" id=8]
 [ext_resource path="res://Sprites/powerup.png" type="Texture" id=9]
 [ext_resource path="res://powerup.gd" type="Script" id=10]
+[ext_resource path="res://score.gd" type="Script" id=11]
+[ext_resource path="res://points/point_small.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -521,16 +523,25 @@ margin_top = 502.0
 margin_right = 721.0
 margin_bottom = 516.0
 text = "Score: 0"
+script = ExtResource( 11 )
 
-[node name="point_small" type="Area2D" parent="."]
-position = Vector2( 472, 310 )
-script = ExtResource( 6 )
+[node name="point_small19" parent="." instance=ExtResource( 12 )]
+position = Vector2( 520, 296 )
 
-[node name="Sprite" type="Sprite" parent="point_small"]
-texture = ExtResource( 4 )
+[node name="point_small" parent="." instance=ExtResource( 12 )]
+position = Vector2( 472, 312 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small"]
-shape = SubResource( 50 )
+[node name="point_small20" parent="." instance=ExtResource( 12 )]
+position = Vector2( 472, 280 )
+
+[node name="point_small21" parent="." instance=ExtResource( 12 )]
+position = Vector2( 472, 296 )
+
+[node name="point_small23" parent="." instance=ExtResource( 12 )]
+position = Vector2( 472, 288 )
+
+[node name="point_small22" parent="." instance=ExtResource( 12 )]
+position = Vector2( 472, 304 )
 
 [node name="point_small2" type="Area2D" parent="."]
 position = Vector2( 473, 230 )
@@ -799,7 +810,7 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 3
+frame = 1
 playing = true
 
 [node name="powerup2" type="Area2D" parent="."]
@@ -812,7 +823,7 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup2"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 3
+frame = 1
 playing = true
 
 [node name="powerup3" type="Area2D" parent="."]
@@ -825,7 +836,7 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup3"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 3
+frame = 1
 playing = true
 
 [node name="powerup4" type="Area2D" parent="."]
@@ -838,7 +849,6 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup4"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 2
 playing = true
 
 [node name="powerup5" type="Area2D" parent="."]
@@ -851,7 +861,7 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup5"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 1
+frame = 3
 playing = true
 
 [node name="powerup6" type="Area2D" parent="."]
@@ -864,45 +874,26 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup6"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 1
+frame = 3
 playing = true
 
-[connection signal="body_entered" from="point_small" to="point_small" method="_on_small_collision"]
-[connection signal="small_point" from="point_small" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small2" to="point_small2" method="_on_small_collision"]
-[connection signal="small_point" from="point_small2" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small3" to="point_small3" method="_on_small_collision"]
-[connection signal="small_point" from="point_small3" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small4" to="point_small4" method="_on_small_collision"]
-[connection signal="small_point" from="point_small4" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small5" to="point_small5" method="_on_small_collision"]
-[connection signal="small_point" from="point_small5" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small6" to="point_small6" method="_on_small_collision"]
-[connection signal="small_point" from="point_small6" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small7" to="point_small7" method="_on_small_collision"]
-[connection signal="small_point" from="point_small7" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small8" to="point_small8" method="_on_small_collision"]
-[connection signal="small_point" from="point_small8" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small9" to="point_small9" method="_on_small_collision"]
-[connection signal="small_point" from="point_small9" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small10" to="point_small10" method="_on_small_collision"]
-[connection signal="small_point" from="point_small10" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small11" to="point_small11" method="_on_small_collision"]
-[connection signal="small_point" from="point_small11" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small12" to="point_small12" method="_on_small_collision"]
-[connection signal="small_point" from="point_small12" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small13" to="point_small13" method="_on_small_collision"]
-[connection signal="small_point" from="point_small13" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small14" to="point_small14" method="_on_small_collision"]
-[connection signal="small_point" from="point_small14" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small15" to="point_small15" method="_on_small_collision"]
-[connection signal="small_point" from="point_small15" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small16" to="point_small16" method="_on_small_collision"]
-[connection signal="small_point" from="point_small16" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small17" to="point_small17" method="_on_small_collision"]
-[connection signal="small_point" from="point_small17" to="." method="_small_item_get"]
 [connection signal="body_entered" from="point_small18" to="point_small18" method="_on_small_collision"]
-[connection signal="small_point" from="point_small18" to="." method="_small_item_get"]
 [connection signal="big_point" from="point_big" to="." method="_big_item_get"]
 [connection signal="body_entered" from="point_big" to="point_big" method="_on_big_collision"]
 [connection signal="big_point" from="point_big2" to="." method="_big_item_get"]
