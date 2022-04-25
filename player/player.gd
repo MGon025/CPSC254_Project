@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 signal score_changed
-signal life_changed
+signal lives_changed
 signal powered_up
 signal powered_down
 
@@ -13,6 +13,8 @@ var _direction = null
 var _curr_action = null
 var _next_action = null
 var _powered: bool = false
+
+onready var _start_pos = get_position()
 
 # animation nodes
 onready var move_sprite: Sprite = get_node("Move")
@@ -27,9 +29,8 @@ onready var ray_left = [get_node("RayLeft1"), get_node("RayLeft2")]
 
 
 func _ready():
-	# _force = Vector2(_speed, 0.0)
+	# _next_action = Action.RIGHT
 	_direction = ray_right
-	pass
 
 
 func _input(_event):
@@ -149,11 +150,9 @@ func take_life(damage: int):
 	# healing
 	elif damage < 0:
 		#TODO: play healing sfx
-
+		emit_signal("lives_changed")
 		print("player healed. " + str(old_lives) + " + "\
 				+ str(damage) + " = " + str(Global.lives))
-
-	emit_signal("life_changed")
 
 
 func respawn():
@@ -165,6 +164,13 @@ func respawn():
 		#TODO: choose restart game or go to main menu
 		print("game over")
 
+	set_position(_start_pos)
+	set_physics_process(true)
+	move_sprite.visible = true
+	death_sprite.visible = false
+	anim_tree.set("parameters/state/current", 0)
+	_curr_action = null
+	_next_action = null
 	# warning-ignore:return_value_discarded
-	get_tree().reload_current_scene()
+	# get_tree().reload_current_scene()
 
