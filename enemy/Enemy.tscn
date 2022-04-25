@@ -1,16 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/enemy1.png" type="Texture" id=2]
-[ext_resource path="res://player/playermove.tres" type="Animation" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 7.28011
 
 [sub_resource type="Animation" id=10]
-resource_name = "idle"
-length = 0.1
-loop = true
+resource_name = "enemyMove"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -45,16 +42,55 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 hframes = 3
 vframes = 4
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 10 )
-anims/move = ExtResource( 3 )
+anims/enemyMove = SubResource( 10 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 4 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/movement_time/scale = 1.0
+
+[node name="RayDown1" type="RayCast2D" parent="."]
+position = Vector2( -4, 5 )
+enabled = true
+cast_to = Vector2( 0, 2 )
+
+[node name="RayDown2" type="RayCast2D" parent="."]
+position = Vector2( 4, 5 )
+enabled = true
+cast_to = Vector2( 0, 2 )
+
+[node name="RayUp1" type="RayCast2D" parent="."]
+position = Vector2( -4, -5 )
+enabled = true
+cast_to = Vector2( 0, -2 )
+
+[node name="RayUp2" type="RayCast2D" parent="."]
+position = Vector2( 4, -5 )
+enabled = true
+cast_to = Vector2( 0, -2 )
+
+[node name="RayRight1" type="RayCast2D" parent="."]
+position = Vector2( 5, -4 )
+enabled = true
+cast_to = Vector2( 2, 0 )
+
+[node name="RayRight2" type="RayCast2D" parent="."]
+position = Vector2( 5, 4 )
+enabled = true
+cast_to = Vector2( 2, 0 )
+
+[node name="RayLeft1" type="RayCast2D" parent="."]
+position = Vector2( -5, -4 )
+enabled = true
+cast_to = Vector2( -2, 0 )
+
+[node name="RayLeft2" type="RayCast2D" parent="."]
+position = Vector2( -5, 4 )
+enabled = true
+cast_to = Vector2( -2, 0 )
