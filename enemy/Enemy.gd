@@ -4,7 +4,6 @@ var speed: int = 100
 var force: Vector2 = Vector2(speed, 0.0)
 var _current_direction: int = -1 # -1 = No Movement, 0 = UP, 1 = RIGHT, 2 = DOWN, 3 = LEFT
 
-onready var player_body: KinematicBody2D = get_node("../Player") # Player's sprite body
 onready var anim_tree: AnimationTree = get_node("AnimationTree")
 
 
@@ -23,6 +22,11 @@ func _physics_process(_delta):
 	var curr_vel: Vector2 = movement()
 	animation(curr_vel)
 	if !curr_vel:
+		_current_direction = choose_direction()
+	
+	var curr_num_valid_dirs = _num_valid_directions
+	_num_valid_directions = check_num_valid_directions()
+	if curr_num_valid_dirs < _num_valid_directions:
 		_current_direction = choose_direction()
 
 func animation(velocity: Vector2):
@@ -59,6 +63,7 @@ func movement() -> Vector2:
 	return move_and_slide(force)
 	
 func choose_direction() -> int:
+	# randomly chooses a valid direction to move towards
 	var valid_directions: Array = [0, 1, 2, 3]
 	for raycast in ray_up:
 		if raycast.get_collider() is TileMap:
@@ -75,13 +80,14 @@ func choose_direction() -> int:
 	return valid_directions[randi() % valid_directions.size()]
 
 func check_num_valid_directions() -> int:
+	# counts the number of valid movement directions
 	var num_valid = 0
 	var temp = 1
 	if _current_direction != 2:
 		for raycast in ray_up:
 			if raycast.get_collider() is TileMap:
 				temp = 0
-	num_valid += temp
+		num_valid += temp
 	temp = 1
 	if _current_direction != 0:
 		for raycast in ray_down:
@@ -93,12 +99,12 @@ func check_num_valid_directions() -> int:
 		for raycast in ray_left:
 			if raycast.get_collider() is TileMap:
 				temp = 0
-	num_valid += temp
+		num_valid += temp
 	temp = 1
 	if _current_direction != 1:
 		for raycast in ray_right:
 			if raycast.get_collider() is TileMap:
 				temp = 0
-	num_valid += temp
+		num_valid += temp
 	
 	return num_valid
