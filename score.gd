@@ -10,8 +10,8 @@ func _ready():
 		print('player connecting')
 		player.connect("score_changed", self, "_on_score_changed")
 
-	self.text = str(Global.score)
+	self.text = "Score: " + str(Global.score)
 
 
 func _on_score_changed():
-	self.text = str(Global.score)
+	self.text = "Score: " + str(Global.score)

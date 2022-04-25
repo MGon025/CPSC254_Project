@@ -1,17 +1,15 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/lifebar.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/tilemap.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/point.png" type="Texture" id=4]
 [ext_resource path="res://maze.gd" type="Script" id=5]
-[ext_resource path="res://point_small.gd" type="Script" id=6]
 [ext_resource path="res://Sprites/bigpoint.png" type="Texture" id=7]
-[ext_resource path="res://point_big.gd" type="Script" id=8]
+[ext_resource path="res://items/point_big.gd" type="Script" id=8]
 [ext_resource path="res://Sprites/powerup.png" type="Texture" id=9]
-[ext_resource path="res://powerup.gd" type="Script" id=10]
+[ext_resource path="res://items/powerup.gd" type="Script" id=10]
 [ext_resource path="res://score.gd" type="Script" id=11]
-[ext_resource path="res://points/point_small.tscn" type="PackedScene" id=12]
+[ext_resource path="res://items/point_small.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -462,9 +460,6 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 } ]
 0/z_index = 0
 
-[sub_resource type="CircleShape2D" id=50]
-radius = 2.82843
-
 [sub_resource type="CircleShape2D" id=51]
 radius = 8.24621
 
@@ -525,198 +520,1114 @@ margin_bottom = 516.0
 text = "Score: 0"
 script = ExtResource( 11 )
 
-[node name="point_small19" parent="." instance=ExtResource( 12 )]
-position = Vector2( 520, 296 )
-
-[node name="point_small" parent="." instance=ExtResource( 12 )]
+[node name="point_small" parent="." groups=["small_point"] instance=ExtResource( 12 )]
 position = Vector2( 472, 312 )
 
-[node name="point_small20" parent="." instance=ExtResource( 12 )]
-position = Vector2( 472, 280 )
+[node name="point_small7" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 249 )
 
-[node name="point_small21" parent="." instance=ExtResource( 12 )]
+[node name="point_small6" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 264 )
+
+[node name="point_small5" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 280 )
+
+[node name="point_small8" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 202 )
+
+[node name="point_small9" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 217 )
+
+[node name="point_small10" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 233 )
+
+[node name="point_small119" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 233 )
+
+[node name="point_small120" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 248 )
+
+[node name="point_small121" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 186 )
+
+[node name="point_small122" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 201 )
+
+[node name="point_small123" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 217 )
+
+[node name="point_small11" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 408, 296 )
+
+[node name="point_small12" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 408, 312 )
+
+[node name="point_small13" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 408, 328 )
+
+[node name="point_small36" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 360, 295 )
+
+[node name="point_small265" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 344, 296 )
+
+[node name="point_small37" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 360, 311 )
+
+[node name="point_small38" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 360, 327 )
+
+[node name="point_small39" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 712, 248 )
+
+[node name="point_small40" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 712, 264 )
+
+[node name="point_small41" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 712, 280 )
+
+[node name="point_small42" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 728, 280 )
+
+[node name="point_small157" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 679, 280 )
+
+[node name="point_small158" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 695, 280 )
+
+[node name="point_small43" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 728, 296 )
+
+[node name="point_small45" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 712, 312 )
+
+[node name="point_small46" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 712, 328 )
+
+[node name="point_small47" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 728, 232 )
+
+[node name="point_small48" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 728, 248 )
+
+[node name="point_small44" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 728, 312 )
+
+[node name="point_small159" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 679, 295 )
+
+[node name="point_small160" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 679, 311 )
+
+[node name="point_small35" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 424, 328 )
+
+[node name="point_small4" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 296 )
+
+[node name="point_small14" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 616, 265 )
+
+[node name="point_small15" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 616, 280 )
+
+[node name="point_small16" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 616, 296 )
+
+[node name="point_small17" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 616, 233 )
+
+[node name="point_small18" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 616, 249 )
+
+[node name="point_small30" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 327 )
+
+[node name="point_small31" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 342 )
+
+[node name="point_small32" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 358 )
+
+[node name="point_small243" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 633, 360 )
+
+[node name="point_small244" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 633, 376 )
+
+[node name="point_small230" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 678, 376 )
+
+[node name="point_small231" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 678, 391 )
+
+[node name="point_small232" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 680, 407 )
+
+[node name="point_small33" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 295 )
+
+[node name="point_small34" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 311 )
+
+[node name="point_small221" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 600, 360 )
+
+[node name="point_small222" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 600, 375 )
+
+[node name="point_small223" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 600, 391 )
+
+[node name="point_small225" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 585, 392 )
+
+[node name="point_small224" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 600, 344 )
+
+[node name="point_small254" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 584, 344 )
+
+[node name="point_small161" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 631, 296 )
+
+[node name="point_small162" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 664, 312 )
+
+[node name="point_small245" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 680, 343 )
+
+[node name="point_small246" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 664, 343 )
+
+[node name="point_small26" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 616, 312 )
+
+[node name="point_small3" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 312 )
+
+[node name="point_small2" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 328 )
+
+[node name="point_small278" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 408, 391 )
+
+[node name="point_small279" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 424, 391 )
+
+[node name="point_small280" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 391 )
+
+[node name="point_small281" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 424, 360 )
+
+[node name="point_small283" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 423, 344 )
+
+[node name="point_small284" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 375, 328 )
+
+[node name="point_small285" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 346, 328 )
+
+[node name="point_small282" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 360 )
+
+[node name="point_small269" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 375 )
+
+[node name="point_small270" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 390 )
+
+[node name="point_small271" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 406 )
+
+[node name="point_small350" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 345, 377 )
+
+[node name="point_small351" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 345, 392 )
+
+[node name="point_small352" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 345, 408 )
+
+[node name="point_small363" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 329, 408 )
+
+[node name="point_small353" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 328, 346 )
+
+[node name="point_small354" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 328, 361 )
+
+[node name="point_small355" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 328, 377 )
+
+[node name="point_small356" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 328, 440 )
+
+[node name="point_small357" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 328, 455 )
+
+[node name="point_small358" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 328, 471 )
+
+[node name="point_small369" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 344, 472 )
+
+[node name="point_small272" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 328 )
+
+[node name="point_small273" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 343 )
+
+[node name="point_small274" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 359 )
+
+[node name="point_small366" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 377, 361 )
+
+[node name="point_small364" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 361, 376 )
+
+[node name="point_small365" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 361, 360 )
+
+[node name="point_small275" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 422 )
+
+[node name="point_small367" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 377, 424 )
+
+[node name="point_small276" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 438 )
+
+[node name="point_small277" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 454 )
+
+[node name="point_small359" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 360, 409 )
+
+[node name="point_small360" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 360, 425 )
+
+[node name="point_small361" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 360, 441 )
+
+[node name="point_small368" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 345, 440 )
+
+[node name="point_small362" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 360, 457 )
+
+[node name="point_small25" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 456, 328 )
+
+[node name="point_small24" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 472, 328 )
+
+[node name="point_small286" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 441, 375 )
+
+[node name="point_small287" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 457, 375 )
+
+[node name="point_small288" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 473, 375 )
+
+[node name="point_small289" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 471, 392 )
+
+[node name="point_small290" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 487, 392 )
+
+[node name="point_small291" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 503, 392 )
+
+[node name="point_small292" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 504, 375 )
+
+[node name="point_small66" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 168 )
+
+[node name="point_small67" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 456, 168 )
+
+[node name="point_small68" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 472, 168 )
+
+[node name="point_small69" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 488, 168 )
+
+[node name="point_small70" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 504, 168 )
+
+[node name="point_small71" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 521, 168 )
+
+[node name="point_small109" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 520, 184 )
+
+[node name="point_small72" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 537, 168 )
+
+[node name="point_small73" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 553, 168 )
+
+[node name="point_small74" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 569, 168 )
+
+[node name="point_small84" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 423, 136 )
+
+[node name="point_small85" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 439, 136 )
+
+[node name="point_small86" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 455, 136 )
+
+[node name="point_small87" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 471, 136 )
+
+[node name="point_small108" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 472, 151 )
+
+[node name="point_small93" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 343, 136 )
+
+[node name="point_small94" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 359, 136 )
+
+[node name="point_small95" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 375, 136 )
+
+[node name="point_small96" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 391, 136 )
+
+[node name="point_small97" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 151 )
+
+[node name="point_small98" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 408, 151 )
+
+[node name="point_small99" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 424, 151 )
+
+[node name="point_small88" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 487, 136 )
+
+[node name="point_small89" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 504, 136 )
+
+[node name="point_small90" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 520, 136 )
+
+[node name="point_small107" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 520, 151 )
+
+[node name="point_small91" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 536, 136 )
+
+[node name="point_small92" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 552, 136 )
+
+[node name="point_small75" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 585, 168 )
+
+[node name="point_small128" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 488, 263 )
+
+[node name="point_small129" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 504, 263 )
+
+[node name="point_small130" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 521, 263 )
+
+[node name="point_small131" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 537, 263 )
+
+[node name="point_small132" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 553, 263 )
+
+[node name="point_small133" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 569, 264 )
+
+[node name="point_small134" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 585, 263 )
+
+[node name="point_small213" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 472, 360 )
+
+[node name="point_small220" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 472, 345 )
+
+[node name="point_small214" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 488, 360 )
+
+[node name="point_small215" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 505, 360 )
+
+[node name="point_small216" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 521, 360 )
+
+[node name="point_small217" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 537, 360 )
+
+[node name="point_small218" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 553, 360 )
+
+[node name="point_small219" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 569, 360 )
+
+[node name="point_small187" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 503, 408 )
+
+[node name="point_small323" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 503, 424 )
+
+[node name="point_small188" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 520, 408 )
+
+[node name="point_small189" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 536, 408 )
+
+[node name="point_small190" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 552, 408 )
+
+[node name="point_small193" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 488, 472 )
+
+[node name="point_small194" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 505, 472 )
+
+[node name="point_small195" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 521, 472 )
+
+[node name="point_small196" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 537, 472 )
+
+[node name="point_small197" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 488, 472 )
+
+[node name="point_small198" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 505, 472 )
+
+[node name="point_small199" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 521, 472 )
+
+[node name="point_small342" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 409, 472 )
+
+[node name="point_small343" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 426, 472 )
+
+[node name="point_small344" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 442, 472 )
+
+[node name="point_small345" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 409, 472 )
+
+[node name="point_small346" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 426, 472 )
+
+[node name="point_small347" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 442, 472 )
+
+[node name="point_small200" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 537, 472 )
+
+[node name="point_small201" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 521, 440 )
+
+[node name="point_small202" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 538, 440 )
+
+[node name="point_small203" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 554, 440 )
+
+[node name="point_small204" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 570, 440 )
+
+[node name="point_small205" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 521, 440 )
+
+[node name="point_small313" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 536, 423 )
+
+[node name="point_small314" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 536, 423 )
+
+[node name="point_small315" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 521, 455 )
+
+[node name="point_small316" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 521, 455 )
+
+[node name="point_small317" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 488, 456 )
+
+[node name="point_small318" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 488, 456 )
+
+[node name="point_small332" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 472, 456 )
+
+[node name="point_small333" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 472, 456 )
+
+[node name="point_small319" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 488, 424 )
+
+[node name="point_small320" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 488, 424 )
+
+[node name="point_small321" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 488, 439 )
+
+[node name="point_small322" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 488, 439 )
+
+[node name="point_small324" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 456, 473 )
+
+[node name="point_small325" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 456, 473 )
+
+[node name="point_small326" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 456, 457 )
+
+[node name="point_small327" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 456, 457 )
+
+[node name="point_small328" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 456, 425 )
+
+[node name="point_small329" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 456, 425 )
+
+[node name="point_small330" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 456, 440 )
+
+[node name="point_small331" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 456, 440 )
+
+[node name="point_small334" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 408 )
+
+[node name="point_small335" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 408 )
+
+[node name="point_small336" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 423 )
+
+[node name="point_small337" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 440, 423 )
+
+[node name="point_small338" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 425, 424 )
+
+[node name="point_small339" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 425, 424 )
+
+[node name="point_small340" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 425, 439 )
+
+[node name="point_small341" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 425, 439 )
+
+[node name="point_small348" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 409, 439 )
+
+[node name="point_small349" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 409, 439 )
+
+[node name="point_small206" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 538, 440 )
+
+[node name="point_small209" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 566, 472 )
+
+[node name="point_small210" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 583, 472 )
+
+[node name="point_small211" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 566, 472 )
+
+[node name="point_small212" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 583, 472 )
+
+[node name="point_small311" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 584, 457 )
+
+[node name="point_small312" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 584, 457 )
+
+[node name="point_small207" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 554, 440 )
+
+[node name="point_small208" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 570, 440 )
+
+[node name="point_small191" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 568, 408 )
+
+[node name="point_small192" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 584, 408 )
+
+[node name="point_small293" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 552, 376 )
+
+[node name="point_small294" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 552, 391 )
+
+[node name="point_small163" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 567, 232 )
+
+[node name="point_small164" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 583, 232 )
+
+[node name="point_small165" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 599, 232 )
+
+[node name="point_small247" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 585, 281 )
+
+[node name="point_small248" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 601, 281 )
+
+[node name="point_small249" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 568, 295 )
+
+[node name="point_small250" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 584, 295 )
+
+[node name="point_small76" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 600, 168 )
+
+[node name="point_small77" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 616, 168 )
+
+[node name="point_small81" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 583, 136 )
+
+[node name="point_small82" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 598, 136 )
+
+[node name="point_small83" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 614, 136 )
+
+[node name="point_small106" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 616, 152 )
+
+[node name="point_small78" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 632, 168 )
+
+[node name="point_small138" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 551, 200 )
+
+[node name="point_small139" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 567, 200 )
+
+[node name="point_small144" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 568, 184 )
+
+[node name="point_small145" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 663, 200 )
+
+[node name="point_small146" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 664, 184 )
+
+[node name="point_small147" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 680, 184 )
+
+[node name="point_small148" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 712, 185 )
+
+[node name="point_small140" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 583, 200 )
+
+[node name="point_small141" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 598, 200 )
+
+[node name="point_small166" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 599, 215 )
+
+[node name="point_small167" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 584, 247 )
+
+[node name="point_small142" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 614, 200 )
+
+[node name="point_small143" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 630, 200 )
+
+[node name="point_small79" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 168 )
+
+[node name="point_small80" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 664, 168 )
+
+[node name="point_small104" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 711, 136 )
+
+[node name="point_small100" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 136 )
+
+[node name="point_small105" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 151 )
+
+[node name="point_small101" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 664, 136 )
+
+[node name="point_small102" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 680, 136 )
+
+[node name="point_small103" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 696, 136 )
+
+[node name="point_small56" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 456, 201 )
+
+[node name="point_small57" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 472, 201 )
+
+[node name="point_small58" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 488, 201 )
+
+[node name="point_small59" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 504, 201 )
+
+[node name="point_small60" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 520, 201 )
+
+[node name="point_small114" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 360, 264 )
+
+[node name="point_small115" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 376, 264 )
+
+[node name="point_small116" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 264 )
+
+[node name="point_small266" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 279 )
+
+[node name="point_small267" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 392, 295 )
+
+[node name="point_small268" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 377, 295 )
+
+[node name="point_small176" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 327, 248 )
+
+[node name="point_small177" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 343, 248 )
+
+[node name="point_small182" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 328, 200 )
+
+[node name="point_small183" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 344, 200 )
+
+[node name="point_small179" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 328, 168 )
+
+[node name="point_small181" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 327, 152 )
+
+[node name="point_small180" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 344, 168 )
+
+[node name="point_small178" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 359, 248 )
+
+[node name="point_small170" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 360, 200 )
+
+[node name="point_small171" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 360, 215 )
+
+[node name="point_small172" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 360, 153 )
+
+[node name="point_small173" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 360, 168 )
+
+[node name="point_small174" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 360, 184 )
+
+[node name="point_small175" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 360, 231 )
+
+[node name="point_small186" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 376, 232 )
+
+[node name="point_small184" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 327, 216 )
+
+[node name="point_small185" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 327, 232 )
+
+[node name="point_small262" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 327, 296 )
+
+[node name="point_small263" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 327, 264 )
+
+[node name="point_small264" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 327, 280 )
+
+[node name="point_small117" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 408, 264 )
+
+[node name="point_small118" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 424, 264 )
+
+[node name="point_small124" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 407, 217 )
+
+[node name="point_small125" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 423, 217 )
+
+[node name="point_small126" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 408, 185 )
+
+[node name="point_small127" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 424, 185 )
+
+[node name="point_small61" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 473, 232 )
+
+[node name="point_small62" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 489, 232 )
+
+[node name="point_small63" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 505, 232 )
+
+[node name="point_small64" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 521, 232 )
+
+[node name="point_small168" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 520, 216 )
+
+[node name="point_small169" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 536, 216 )
+
+[node name="point_small19" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 488, 248 )
+
+[node name="point_small65" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 473, 216 )
+
+[node name="point_small135" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 551, 217 )
+
+[node name="point_small136" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 552, 248 )
+
+[node name="point_small137" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 552, 232 )
+
+[node name="point_small20" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 472, 265 )
+
+[node name="point_small21" parent="." groups=["small_point"] instance=ExtResource( 12 )]
 position = Vector2( 472, 296 )
 
-[node name="point_small23" parent="." instance=ExtResource( 12 )]
-position = Vector2( 472, 288 )
+[node name="point_small23" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 472, 280 )
 
-[node name="point_small22" parent="." instance=ExtResource( 12 )]
-position = Vector2( 472, 304 )
+[node name="point_small22" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 456, 280 )
 
-[node name="point_small2" type="Area2D" parent="."]
-position = Vector2( 473, 230 )
-script = ExtResource( 6 )
+[node name="point_small27" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 600, 328 )
 
-[node name="Sprite" type="Sprite" parent="point_small2"]
-position = Vector2( -1, 0 )
-texture = ExtResource( 4 )
+[node name="point_small251" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 569, 344 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small2"]
-position = Vector2( -1, 0 )
-shape = SubResource( 50 )
+[node name="point_small252" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 569, 328 )
 
-[node name="point_small3" type="Area2D" parent="."]
-position = Vector2( 520, 264 )
-script = ExtResource( 6 )
+[node name="point_small253" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 568, 313 )
 
-[node name="Sprite" type="Sprite" parent="point_small3"]
-texture = ExtResource( 4 )
+[node name="point_small28" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 632, 328 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small3"]
-shape = SubResource( 50 )
+[node name="point_small155" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 264 )
 
-[node name="point_small4" type="Area2D" parent="."]
-position = Vector2( 550, 215 )
-script = ExtResource( 6 )
+[node name="point_small156" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 632, 264 )
 
-[node name="Sprite" type="Sprite" parent="point_small4"]
-texture = ExtResource( 4 )
+[node name="point_small29" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 616, 328 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small4"]
-shape = SubResource( 50 )
+[node name="point_small233" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 728, 344 )
 
-[node name="point_small5" type="Area2D" parent="."]
-position = Vector2( 579, 264 )
-script = ExtResource( 6 )
+[node name="point_small234" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 728, 359 )
 
-[node name="Sprite" type="Sprite" parent="point_small5"]
-texture = ExtResource( 4 )
+[node name="point_small235" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 728, 375 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small5"]
-shape = SubResource( 50 )
+[node name="point_small240" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 696, 345 )
 
-[node name="point_small6" type="Area2D" parent="."]
-position = Vector2( 597, 344 )
-script = ExtResource( 6 )
+[node name="point_small241" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 696, 360 )
 
-[node name="Sprite" type="Sprite" parent="point_small6"]
-texture = ExtResource( 4 )
+[node name="point_small242" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 696, 376 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small6"]
-shape = SubResource( 50 )
+[node name="point_small236" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 728, 391 )
 
-[node name="point_small7" type="Area2D" parent="."]
-position = Vector2( 520, 361 )
-script = ExtResource( 6 )
+[node name="point_small237" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 728, 407 )
 
-[node name="Sprite" type="Sprite" parent="point_small7"]
-texture = ExtResource( 4 )
+[node name="point_small295" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 408 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small7"]
-shape = SubResource( 50 )
+[node name="point_small296" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 423 )
 
-[node name="point_small8" type="Area2D" parent="."]
-position = Vector2( 504, 411 )
-script = ExtResource( 6 )
+[node name="point_small297" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 439 )
 
-[node name="Sprite" type="Sprite" parent="point_small8"]
-texture = ExtResource( 4 )
+[node name="point_small308" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 632, 440 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small8"]
-shape = SubResource( 50 )
+[node name="point_small298" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 455 )
 
-[node name="point_small9" type="Area2D" parent="."]
-position = Vector2( 661, 264 )
-script = ExtResource( 6 )
+[node name="point_small305" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 616, 424 )
 
-[node name="Sprite" type="Sprite" parent="point_small9"]
-texture = ExtResource( 4 )
+[node name="point_small306" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 616, 440 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small9"]
-shape = SubResource( 50 )
+[node name="point_small307" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 616, 456 )
 
-[node name="point_small10" type="Area2D" parent="."]
-position = Vector2( 630, 390 )
-script = ExtResource( 6 )
+[node name="point_small299" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 471 )
 
-[node name="Sprite" type="Sprite" parent="point_small10"]
-texture = ExtResource( 4 )
+[node name="point_small226" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 665, 392 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small10"]
-shape = SubResource( 50 )
+[node name="point_small238" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 710, 407 )
 
-[node name="point_small11" type="Area2D" parent="."]
-position = Vector2( 406, 327 )
-script = ExtResource( 6 )
+[node name="point_small239" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 696, 407 )
 
-[node name="Sprite" type="Sprite" parent="point_small11"]
-texture = ExtResource( 4 )
+[node name="point_small259" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 681, 439 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small11"]
-shape = SubResource( 50 )
+[node name="point_small260" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 711, 439 )
 
-[node name="point_small12" type="Area2D" parent="."]
-position = Vector2( 389, 230 )
-script = ExtResource( 6 )
+[node name="point_small261" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 697, 439 )
 
-[node name="Sprite" type="Sprite" parent="point_small12"]
-texture = ExtResource( 4 )
+[node name="point_small255" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 680, 472 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small12"]
-shape = SubResource( 50 )
+[node name="point_small256" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 728, 472 )
 
-[node name="point_small13" type="Area2D" parent="."]
-position = Vector2( 517, 167 )
-script = ExtResource( 6 )
+[node name="point_small257" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 710, 472 )
 
-[node name="Sprite" type="Sprite" parent="point_small13"]
-texture = ExtResource( 4 )
+[node name="point_small258" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 696, 472 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small13"]
-shape = SubResource( 50 )
+[node name="point_small300" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 664, 456 )
 
-[node name="point_small14" type="Area2D" parent="."]
-position = Vector2( 424, 426 )
-script = ExtResource( 6 )
+[node name="point_small303" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 616, 471 )
 
-[node name="Sprite" type="Sprite" parent="point_small14"]
-texture = ExtResource( 4 )
+[node name="point_small304" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 632, 472 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small14"]
-shape = SubResource( 50 )
+[node name="point_small301" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 680, 456 )
 
-[node name="point_small15" type="Area2D" parent="."]
-position = Vector2( 344, 392 )
-script = ExtResource( 6 )
+[node name="point_small302" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 728, 457 )
 
-[node name="Sprite" type="Sprite" parent="point_small15"]
-texture = ExtResource( 4 )
+[node name="point_small227" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 616, 392 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small15"]
-shape = SubResource( 50 )
+[node name="point_small228" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 392 )
 
-[node name="point_small16" type="Area2D" parent="."]
-position = Vector2( 326, 265 )
-script = ExtResource( 6 )
+[node name="point_small229" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 632, 392 )
 
-[node name="Sprite" type="Sprite" parent="point_small16"]
-texture = ExtResource( 4 )
+[node name="point_small309" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 584, 424 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small16"]
-shape = SubResource( 50 )
+[node name="point_small310" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 600, 424 )
 
-[node name="point_small17" type="Area2D" parent="."]
-visible = false
-position = Vector2( 694, 473 )
-script = ExtResource( 6 )
+[node name="point_small49" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 696, 185 )
 
-[node name="Sprite" type="Sprite" parent="point_small17"]
-texture = ExtResource( 4 )
+[node name="point_small50" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 696, 200 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small17"]
-shape = SubResource( 50 )
+[node name="point_small149" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 218 )
 
-[node name="point_small18" type="Area2D" parent="."]
-position = Vector2( 727, 406 )
-script = ExtResource( 6 )
+[node name="point_small150" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 648, 233 )
 
-[node name="Sprite" type="Sprite" parent="point_small18"]
-texture = ExtResource( 4 )
+[node name="point_small51" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 696, 216 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="point_small18"]
-shape = SubResource( 50 )
+[node name="point_small110" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 712, 216 )
 
-[node name="point_big" type="Area2D" parent="."]
+[node name="point_small52" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 696, 153 )
+
+[node name="point_small53" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 696, 169 )
+
+[node name="point_small111" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 728, 185 )
+
+[node name="point_small112" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 728, 153 )
+
+[node name="point_small113" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 728, 169 )
+
+[node name="point_small54" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 696, 232 )
+
+[node name="point_small55" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 696, 248 )
+
+[node name="point_small151" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 664, 232 )
+
+[node name="point_small152" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 664, 248 )
+
+[node name="point_small153" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 664, 264 )
+
+[node name="point_small154" parent="." groups=["small_point"] instance=ExtResource( 12 )]
+position = Vector2( 664, 280 )
+
+[node name="point_big" type="Area2D" parent="." groups=["big_point"]]
 position = Vector2( 331, 328 )
 script = ExtResource( 8 )
 
@@ -728,8 +1639,8 @@ texture = ExtResource( 7 )
 position = Vector2( -1, 1 )
 shape = SubResource( 51 )
 
-[node name="point_big2" type="Area2D" parent="."]
-position = Vector2( 583, 439 )
+[node name="point_big2" type="Area2D" parent="." groups=["big_point"]]
+position = Vector2( 585, 439 )
 script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="point_big2"]
@@ -740,7 +1651,7 @@ texture = ExtResource( 7 )
 position = Vector2( -1, 1 )
 shape = SubResource( 51 )
 
-[node name="point_big3" type="Area2D" parent="."]
+[node name="point_big3" type="Area2D" parent="." groups=["big_point"]]
 position = Vector2( 426, 168 )
 script = ExtResource( 8 )
 
@@ -752,7 +1663,7 @@ texture = ExtResource( 7 )
 position = Vector2( -1, 1 )
 shape = SubResource( 51 )
 
-[node name="point_big4" type="Area2D" parent="."]
+[node name="point_big4" type="Area2D" parent="." groups=["big_point"]]
 position = Vector2( 648, 200 )
 script = ExtResource( 8 )
 
@@ -764,7 +1675,7 @@ texture = ExtResource( 7 )
 position = Vector2( -1, 1 )
 shape = SubResource( 51 )
 
-[node name="point_big5" type="Area2D" parent="."]
+[node name="point_big5" type="Area2D" parent="." groups=["big_point"]]
 position = Vector2( 394, 471 )
 script = ExtResource( 8 )
 
@@ -776,7 +1687,7 @@ texture = ExtResource( 7 )
 position = Vector2( -1, 1 )
 shape = SubResource( 51 )
 
-[node name="point_big6" type="Area2D" parent="."]
+[node name="point_big6" type="Area2D" parent="." groups=["big_point"]]
 position = Vector2( 712, 342 )
 script = ExtResource( 8 )
 
@@ -788,8 +1699,8 @@ texture = ExtResource( 7 )
 position = Vector2( -1, 1 )
 shape = SubResource( 51 )
 
-[node name="point_big7" type="Area2D" parent="."]
-position = Vector2( 728, 138 )
+[node name="point_big7" type="Area2D" parent="." groups=["big_point"]]
+position = Vector2( 729, 136 )
 script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="point_big7"]
@@ -800,7 +1711,7 @@ texture = ExtResource( 7 )
 position = Vector2( -1, 1 )
 shape = SubResource( 51 )
 
-[node name="powerup" type="Area2D" parent="."]
+[node name="powerup" type="Area2D" parent="." groups=["powerup"]]
 position = Vector2( 327, 136 )
 script = ExtResource( 10 )
 
@@ -810,11 +1721,10 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 1
 playing = true
 
-[node name="powerup2" type="Area2D" parent="."]
-position = Vector2( 726, 217 )
+[node name="powerup2" type="Area2D" parent="." groups=["powerup"]]
+position = Vector2( 728, 216 )
 script = ExtResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="powerup2"]
@@ -823,10 +1733,9 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup2"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 1
 playing = true
 
-[node name="powerup3" type="Area2D" parent="."]
+[node name="powerup3" type="Area2D" parent="." groups=["powerup"]]
 position = Vector2( 726, 440 )
 script = ExtResource( 10 )
 
@@ -836,11 +1745,10 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup3"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 1
 playing = true
 
-[node name="powerup4" type="Area2D" parent="."]
-position = Vector2( 358, 469 )
+[node name="powerup4" type="Area2D" parent="." groups=["powerup"]]
+position = Vector2( 360, 471 )
 script = ExtResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="powerup4"]
@@ -849,9 +1757,10 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup4"]
 frames = SubResource( 57 )
 animation = "New Anim"
+frame = 3
 playing = true
 
-[node name="powerup5" type="Area2D" parent="."]
+[node name="powerup5" type="Area2D" parent="." groups=["powerup"]]
 position = Vector2( 568, 136 )
 script = ExtResource( 10 )
 
@@ -861,10 +1770,10 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup5"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 3
+frame = 2
 playing = true
 
-[node name="powerup6" type="Area2D" parent="."]
+[node name="powerup6" type="Area2D" parent="." groups=["powerup"]]
 position = Vector2( 552, 472 )
 script = ExtResource( 10 )
 
@@ -874,49 +1783,19 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup6"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 3
+frame = 2
 playing = true
 
-[connection signal="body_entered" from="point_small2" to="point_small2" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small3" to="point_small3" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small4" to="point_small4" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small5" to="point_small5" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small6" to="point_small6" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small7" to="point_small7" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small8" to="point_small8" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small9" to="point_small9" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small10" to="point_small10" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small11" to="point_small11" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small12" to="point_small12" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small13" to="point_small13" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small14" to="point_small14" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small15" to="point_small15" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small16" to="point_small16" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small17" to="point_small17" method="_on_small_collision"]
-[connection signal="body_entered" from="point_small18" to="point_small18" method="_on_small_collision"]
-[connection signal="big_point" from="point_big" to="." method="_big_item_get"]
 [connection signal="body_entered" from="point_big" to="point_big" method="_on_big_collision"]
-[connection signal="big_point" from="point_big2" to="." method="_big_item_get"]
 [connection signal="body_entered" from="point_big2" to="point_big2" method="_on_big_collision"]
-[connection signal="big_point" from="point_big3" to="." method="_big_item_get"]
 [connection signal="body_entered" from="point_big3" to="point_big3" method="_on_big_collision"]
-[connection signal="big_point" from="point_big4" to="." method="_big_item_get"]
 [connection signal="body_entered" from="point_big4" to="point_big4" method="_on_big_collision"]
-[connection signal="big_point" from="point_big5" to="." method="_big_item_get"]
 [connection signal="body_entered" from="point_big5" to="point_big5" method="_on_big_collision"]
-[connection signal="big_point" from="point_big6" to="." method="_big_item_get"]
 [connection signal="body_entered" from="point_big6" to="point_big6" method="_on_big_collision"]
-[connection signal="big_point" from="point_big7" to="." method="_big_item_get"]
 [connection signal="body_entered" from="point_big7" to="point_big7" method="_on_big_collision"]
 [connection signal="body_entered" from="powerup" to="powerup" method="_on_powerup"]
-[connection signal="powerup" from="powerup" to="." method="_powerup_get"]
 [connection signal="body_entered" from="powerup2" to="powerup2" method="_on_powerup"]
-[connection signal="powerup" from="powerup2" to="." method="_powerup_get"]
 [connection signal="body_entered" from="powerup3" to="powerup3" method="_on_powerup"]
-[connection signal="powerup" from="powerup3" to="." method="_powerup_get"]
 [connection signal="body_entered" from="powerup4" to="powerup4" method="_on_powerup"]
-[connection signal="powerup" from="powerup4" to="." method="_powerup_get"]
 [connection signal="body_entered" from="powerup5" to="powerup5" method="_on_powerup"]
-[connection signal="powerup" from="powerup5" to="." method="_powerup_get"]
 [connection signal="body_entered" from="powerup6" to="powerup6" method="_on_powerup"]
-[connection signal="powerup" from="powerup6" to="." method="_powerup_get"]
