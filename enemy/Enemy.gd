@@ -108,10 +108,10 @@ func check_num_valid_directions() -> int:
 	return num_valid
 	
 func die():
-	set_physics_process(false)
-	set_process_input(false)
-	set_deferred("visible", false)
-	$CollisionShape2D.set_deferred("disabled", true)
+	if player.position.x > 519:
+		set_position(Vector2(328, 136))
+	else:
+		set_position(Vector2(728, 136))
 
 func check_player_collision():
 	for i in get_slide_count():
