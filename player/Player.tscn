@@ -43,7 +43,7 @@ script = ExtResource( 1 )
 [node name="Move" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 3
-frame = 2
+frame = 1
 
 [node name="Death" type="Sprite" parent="."]
 visible = false
@@ -106,3 +106,5 @@ cast_to = Vector2( -8, 0 )
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]

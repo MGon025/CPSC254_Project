@@ -14,6 +14,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see https://www.gnu.org/licenses/.
 
+# Mark Gonzalez
+# mgon025@csu.fullerton.edu
+
 
 extends Sprite
 
@@ -21,6 +24,7 @@ extends Sprite
 func _ready():
 	var player:	KinematicBody2D = get_node("../Player")
 	if not player.is_connected("lives_changed", self, "_on_lives_changed"):
+		# warning-ignore:return_value_discarded
 		player.connect("lives_changed", self, "_on_lives_changed")
 
 	self.frame = Global.lives

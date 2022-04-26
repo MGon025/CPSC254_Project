@@ -14,6 +14,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see https://www.gnu.org/licenses/.
 
+# Mark Gonzalez
+# mgon025@csu.fullerton.edu
+
 
 extends KinematicBody2D
 
@@ -30,7 +33,7 @@ enum Action {UP, RIGHT, DOWN, LEFT}
 
 # for enemy interactions
 var powered: bool = false
-var _power_time: int = 5
+var _power_time: float = 5.0
 
 # for movement
 var _speed: float = 80.0
@@ -48,7 +51,8 @@ onready var _death_sprite = get_node("Death") as Sprite
 onready var _anim_tree = get_node("AnimationTree") as AnimationTree
 
 # for powerup
-onready var _timer = get_node("Timer") as Timer
+onready var _timer_power = get_node("Timer") as Timer
+onready var _timer_game_over = get_node("Timer2") as Timer
 
 # for queueing movement
 onready var _ray_down = [get_node("RayDown1"), get_node("RayDown2")]
@@ -59,6 +63,7 @@ onready var _ray_left = [get_node("RayLeft1"), get_node("RayLeft2")]
 
 func _ready():
 	# _next_action = Action.RIGHT
+	print("game start")
 	_direction = _ray_right
 
 
@@ -94,15 +99,20 @@ func add_score(amount: int):
 
 
 func power_up():
+	# only refresh the timer if called again when running
+	if not _timer_power.is_stopped():
+		print("refreshing")
+		_timer_power.start(_power_time)
+		return
+
 	print("player can kill")
 	emit_signal("powered_up")
-	powered = !powered
+	powered = true
+	
+	_timer_power.start(_power_time)
+	yield(_timer_power, "timeout")
 
-	_timer.set_wait_time(_power_time)
-	_timer.start()
-	yield(_timer, "timeout")
-
-	powered = !powered
+	powered = false
 	emit_signal("powered_down")
 	print("player cannot kill")
 
@@ -119,11 +129,8 @@ func take_life(damage: int = 1):
 	# death
 	if damage > 0:
 		#TODO: Pause everything except player
-		set_physics_process(false)
-		$CollisionShape2D.set_deferred("disabled", true)
-		_move_sprite.visible = false
-		_death_sprite.visible = true
-		_anim_tree.set("parameters/state/current", 1)
+		_flip_proccessing(false)
+		_flip_animation_state()
 
 		print("player died. " + str(old_lives) + " - "\
 				+ str(damage) + " = " + str(Global.lives))
@@ -192,21 +199,43 @@ func _movement() -> Vector2:
 	return move_and_slide(_force)
 
 
+func _flip_animation_state():
+	_death_sprite.visible = !_death_sprite.visible
+	_move_sprite.visible = !_move_sprite.visible
+	_anim_tree.set("parameters/state/current", int(_death_sprite.visible))
+
+
+func _flip_proccessing(state: bool):
+	set_physics_process(state)
+	set_process_input(state)
+	$CollisionShape2D.set_deferred("disabled", !state)
+
+
 func _respawn():
 	# called by player death animation
-	if Global.lives == -1:
-		Global.lives = Global.MAX_LIVES - 1
-		Global.score = 0
-		#TODO: Pause everything except player
-		#TODO: choose restart game or go to main menu
-		print("game over")
+	_flip_animation_state()
+	set_deferred("visible", false)
 
-	set_position(_start_pos)
-	set_physics_process(true)
-	_move_sprite.visible = true
-	_death_sprite.visible = false
-	$CollisionShape2D.set_deferred("disabled", false)
-	_anim_tree.set("parameters/state/current", 0)
-	_curr_action = null
-	_next_action = null
+	if Global.lives > -1:
+		set_position(_start_pos)
+		_flip_proccessing(true)
+		set_deferred("visible", true)
+		emit_signal("lives_changed")
+
+		# set default action to idle
+		_curr_action = null
+		_next_action = null
+		return
+	#TODO: choose restart game or go to main menu
+	print("game over. restarting 5 seconds.")
+
+	_timer_game_over.start(5.0)
+	yield(_timer_game_over, "timeout")
+
+	# reset to default lives and score values
+	Global.lives = Global.MAX_LIVES - 1
+	Global.score = 0
+
+	# warning-ignore:return_value_discarded
+	get_tree().reload_current_scene()
 
