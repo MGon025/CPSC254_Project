@@ -67,20 +67,14 @@ func _ready():
 	_direction = _ray_right
 
 
-func _input(_event):
-	# for debbugging
-	if Input.is_physical_key_pressed(KEY_Z):
-		take_life(1)
-	elif Input.is_physical_key_pressed(KEY_X):
-		take_life(-1)
-	elif Input.is_physical_key_pressed(KEY_C):
-		add_score(10)
-	elif Input.is_physical_key_pressed(KEY_V):
-		add_score(100)
-	elif Input.is_physical_key_pressed(KEY_B):
-		add_score(-100)
-	elif Input.is_physical_key_pressed(KEY_M):
-		power_up()
+#func _input(_event):
+#	# for debbugging
+#	if Input.is_physical_key_pressed(KEY_Z):
+#		take_life(1)
+#	elif Input.is_physical_key_pressed(KEY_X):
+#		take_life(-1)
+#	elif Input.is_physical_key_pressed(KEY_M):
+#		power_up()
 
 
 func _physics_process(_delta):
@@ -118,6 +112,10 @@ func power_up():
 
 
 func take_life(damage: int = 1):
+	# return if death animation is playing
+	if _anim_tree.get("parameters/state/current") == 1:
+		return
+
 	# lives should always be between 0 and MAX_LIVES
 	var old_lives = Global.lives
 	Global.lives = int(min(max(Global.lives - damage, -1), Global.MAX_LIVES))

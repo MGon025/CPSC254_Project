@@ -1,10 +1,11 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/lifebar.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/tilemap.png" type="Texture" id=3]
 [ext_resource path="res://player/lifebar.gd" type="Script" id=4]
 [ext_resource path="res://maze.gd" type="Script" id=5]
+[ext_resource path="res://enemy/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Sprites/bigpoint.png" type="Texture" id=7]
 [ext_resource path="res://items/point_big.gd" type="Script" id=8]
 [ext_resource path="res://Sprites/powerup.png" type="Texture" id=9]
@@ -1723,7 +1724,7 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 1
+frame = 3
 playing = true
 
 [node name="powerup2" type="Area2D" parent="." groups=["powerup"]]
@@ -1736,7 +1737,7 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup2"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 1
+frame = 3
 playing = true
 
 [node name="powerup3" type="Area2D" parent="." groups=["powerup"]]
@@ -1749,7 +1750,7 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup3"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 1
+frame = 3
 playing = true
 
 [node name="powerup4" type="Area2D" parent="." groups=["powerup"]]
@@ -1762,6 +1763,7 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup4"]
 frames = SubResource( 57 )
 animation = "New Anim"
+frame = 2
 playing = true
 
 [node name="powerup5" type="Area2D" parent="." groups=["powerup"]]
@@ -1774,7 +1776,7 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup5"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 3
+frame = 1
 playing = true
 
 [node name="powerup6" type="Area2D" parent="." groups=["powerup"]]
@@ -1787,8 +1789,20 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup6"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 3
+frame = 1
 playing = true
+
+[node name="Enemy" parent="." instance=ExtResource( 6 )]
+position = Vector2( 520, 136 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 712, 328 )
+
+[node name="Enemy3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 520, 408 )
+
+[node name="Enemy4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 360, 295 )
 
 [connection signal="body_entered" from="point_big" to="point_big" method="_on_big_collision"]
 [connection signal="body_entered" from="point_big2" to="point_big2" method="_on_big_collision"]

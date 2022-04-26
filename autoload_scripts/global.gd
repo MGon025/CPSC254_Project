@@ -20,8 +20,16 @@
 
 extends Node
 
-
 const MAX_INT: int = int(pow(2, 63)) - 1
 const MAX_LIVES: int = 3
 var lives: int = MAX_LIVES - 1
 var score: int = 0
+
+
+#func _ready():
+#	print("Movement: WASD or arrow keys")
+#	print("For Debugging:")
+#	print("	Z to damage the player by 1")
+#	print("	X to heal the player by 1")
+#	print("	M to power up the player")
+
