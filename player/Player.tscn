@@ -103,3 +103,8 @@ cast_to = Vector2( -8, 0 )
 position = Vector2( -5, 4 )
 enabled = true
 cast_to = Vector2( -8, 0 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
