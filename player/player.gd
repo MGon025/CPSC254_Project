@@ -48,7 +48,8 @@ onready var _death_sprite = get_node("Death") as Sprite
 onready var _anim_tree = get_node("AnimationTree") as AnimationTree
 
 # for powerup
-onready var _timer = get_node("Timer") as Timer
+onready var _timer_power = get_node("Timer") as Timer
+onready var _timer_game_over = get_node("Timer2") as Timer
 
 # for queueing movement
 onready var _ray_down = [get_node("RayDown1"), get_node("RayDown2")]
@@ -59,6 +60,7 @@ onready var _ray_left = [get_node("RayLeft1"), get_node("RayLeft2")]
 
 func _ready():
 	# _next_action = Action.RIGHT
+	print("game start")
 	_direction = _ray_right
 
 
@@ -95,17 +97,17 @@ func add_score(amount: int):
 
 func power_up():
 	# only refresh the timer if called again when running
-	if not _timer.is_stopped():
+	if not _timer_power.is_stopped():
 		print("refreshing")
-		_timer.start(_power_time)
+		_timer_power.start(_power_time)
 		return
 
 	print("player can kill")
 	emit_signal("powered_up")
 	powered = true
 	
-	_timer.start(_power_time)
-	yield(_timer, "timeout")
+	_timer_power.start(_power_time)
+	yield(_timer_power, "timeout")
 
 	powered = false
 	emit_signal("powered_down")
@@ -223,8 +225,8 @@ func _respawn():
 	#TODO: choose restart game or go to main menu
 	print("game over. restarting 5 seconds.")
 
-	_timer.start(5.0)
-	yield(_timer, "timeout")
+	_timer_game_over.start(5.0)
+	yield(_timer_game_over, "timeout")
 
 	# reset to default lives and score values
 	Global.lives = Global.MAX_LIVES - 1
