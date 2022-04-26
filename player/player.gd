@@ -124,12 +124,8 @@ func take_life(damage: int = 1):
 	# death
 	if damage > 0:
 		#TODO: Pause everything except player
-		set_process_input(false)
-		set_physics_process(false)
-		$CollisionShape2D.set_deferred("disabled", true)
-		_move_sprite.visible = false
-		_death_sprite.visible = true
-		_anim_tree.set("parameters/state/current", 1)
+		_flip_proccessing(false)
+		_flip_animation_state()
 
 		print("player died. " + str(old_lives) + " - "\
 				+ str(damage) + " = " + str(Global.lives))
@@ -198,20 +194,27 @@ func _movement() -> Vector2:
 	return move_and_slide(_force)
 
 
+func _flip_animation_state():
+	_death_sprite.visible = !_death_sprite.visible
+	_move_sprite.visible = !_move_sprite.visible
+	_anim_tree.set("parameters/state/current", int(_death_sprite.visible))
+
+
+func _flip_proccessing(state: bool):
+	set_physics_process(state)
+	set_process_input(state)
+	$CollisionShape2D.set_deferred("disabled", !state)
+
+
 func _respawn():
 	# called by player death animation
-	_anim_tree.set("parameters/state/current", 0)
-	_death_sprite.visible = false
+	_flip_animation_state()
+	set_deferred("visible", false)
 
 	if Global.lives > -1:
 		set_position(_start_pos)
-
-		# re-enable physics process and collision
-		set_physics_process(true)
-		set_process_input(true)
-		$CollisionShape2D.set_deferred("disabled", false)
-
-		_move_sprite.visible = true
+		_flip_proccessing(true)
+		set_deferred("visible", true)
 
 		# set default action to idle
 		_curr_action = null
@@ -219,7 +222,6 @@ func _respawn():
 		return
 	#TODO: choose restart game or go to main menu
 	print("game over. restarting 5 seconds.")
-
 
 	_timer.start(5.0)
 	yield(_timer, "timeout")
