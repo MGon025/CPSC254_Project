@@ -30,7 +30,7 @@ enum Action {UP, RIGHT, DOWN, LEFT}
 
 # for enemy interactions
 var powered: bool = false
-var _power_time: int = 5
+var _power_time: float = 5.0
 
 # for movement
 var _speed: float = 80.0
@@ -94,15 +94,20 @@ func add_score(amount: int):
 
 
 func power_up():
+	# only refresh the timer if called again when running
+	if not _timer.is_stopped():
+		print("refreshing")
+		_timer.start(_power_time)
+		return
+
 	print("player can kill")
 	emit_signal("powered_up")
-	powered = !powered
-
-	_timer.set_wait_time(_power_time)
-	_timer.start()
+	powered = true
+	
+	_timer.start(_power_time)
 	yield(_timer, "timeout")
 
-	powered = !powered
+	powered = false
 	emit_signal("powered_down")
 	print("player cannot kill")
 
@@ -119,6 +124,7 @@ func take_life(damage: int = 1):
 	# death
 	if damage > 0:
 		#TODO: Pause everything except player
+		set_process_input(false)
 		set_physics_process(false)
 		$CollisionShape2D.set_deferred("disabled", true)
 		_move_sprite.visible = false
@@ -194,19 +200,34 @@ func _movement() -> Vector2:
 
 func _respawn():
 	# called by player death animation
-	if Global.lives == -1:
-		Global.lives = Global.MAX_LIVES - 1
-		Global.score = 0
-		#TODO: Pause everything except player
-		#TODO: choose restart game or go to main menu
-		print("game over")
-
-	set_position(_start_pos)
-	set_physics_process(true)
-	_move_sprite.visible = true
-	_death_sprite.visible = false
-	$CollisionShape2D.set_deferred("disabled", false)
 	_anim_tree.set("parameters/state/current", 0)
-	_curr_action = null
-	_next_action = null
+	_death_sprite.visible = false
+
+	if Global.lives > -1:
+		set_position(_start_pos)
+
+		# re-enable physics process and collision
+		set_physics_process(true)
+		set_process_input(true)
+		$CollisionShape2D.set_deferred("disabled", false)
+
+		_move_sprite.visible = true
+
+		# set default action to idle
+		_curr_action = null
+		_next_action = null
+		return
+	#TODO: choose restart game or go to main menu
+	print("game over. restarting 5 seconds.")
+
+
+	_timer.start(5.0)
+	yield(_timer, "timeout")
+
+	# reset to default lives and score values
+	Global.lives = Global.MAX_LIVES - 1
+	Global.score = 0
+
+	# warning-ignore:return_value_discarded
+	get_tree().reload_current_scene()
 
