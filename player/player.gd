@@ -2,18 +2,24 @@ extends KinematicBody2D
 
 signal score_changed
 signal lives_changed
+
+# received by enemy for transitioning in/out of weakened state
 signal powered_up
 signal powered_down
 
 enum Action {UP, RIGHT, DOWN, LEFT}
 
+# for movement
 var _speed: float = 80.0
 var _force: Vector2 = Vector2.ZERO
 var _direction = null
 var _curr_action = null
 var _next_action = null
+
+# for enemy interactions
 var _powered: bool = false
 
+# for respawning
 onready var _start_pos = get_position()
 
 # animation nodes
@@ -47,6 +53,13 @@ func _input(_event):
 		add_score(-100)
 
 
+func _physics_process(_delta):
+	_queue_movement()
+	_update_action()
+	var curr_vel: Vector2 = _movement()
+	_animation(curr_vel)
+
+
 func _queue_movement():
 	if Input.is_action_just_pressed("ui_up"):
 		_direction = ray_up
@@ -60,13 +73,6 @@ func _queue_movement():
 	elif Input.is_action_just_pressed("ui_left"):
 		_direction = ray_left
 		_next_action = Action.LEFT
-
-
-func _physics_process(_delta):
-	_queue_movement()
-	_update_action()
-	var curr_vel: Vector2 = _movement()
-	_animation(curr_vel)
 
 
 func _update_action():
@@ -83,7 +89,7 @@ func _animation(velocity: Vector2):
 	var movement_time: float = 1.0 if velocity else 0.0
 	anim_tree.set("parameters/movement_time/scale", movement_time)
 
-	# adjust rotation based on movement direction
+	# adjust sprite based on movement direction
 	if _force.y < 0.0:
 		move_sprite.set_rotation(-PI / 2)
 	elif _force.x > 0.0:
