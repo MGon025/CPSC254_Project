@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+# received by scoreboard and lifebar respectively
 signal score_changed
 signal lives_changed
 
@@ -7,6 +8,7 @@ signal lives_changed
 signal powered_up
 signal powered_down
 
+# enum for movement direction
 enum Action {UP, RIGHT, DOWN, LEFT}
 
 # for movement
@@ -17,7 +19,8 @@ var _curr_action = null
 var _next_action = null
 
 # for enemy interactions
-var _powered: bool = false
+var powered: bool = false
+var _POWER_TIME: int = 5
 
 # for respawning
 onready var _start_pos = get_position()
@@ -51,6 +54,8 @@ func _input(_event):
 		add_score(100)
 	elif Input.is_physical_key_pressed(KEY_B):
 		add_score(-100)
+	elif Input.is_physical_key_pressed(KEY_M):
+		power_up()
 
 
 func _physics_process(_delta):
@@ -127,13 +132,16 @@ func add_score(amount: int):
 func power_up():
 	print("player can kill")
 	emit_signal("powered_up")
-	_powered = !_powered
-	#TODO: wait several seconds
-	_powered = !_powered
+	powered = !powered
+	$Timer.set_wait_time(_POWER_TIME)
+	$Timer.start()
+	yield($Timer, "timeout")
+	powered = !powered
 	emit_signal("powered_down")
+	print("player cannot kill")
 
 
-func take_life(damage: int):
+func take_life(damage: int = 1):
 	# lives should always be between 0 and MAX_LIVES
 	var old_lives = Global.lives
 	Global.lives = int(min(max(Global.lives - damage, -1), Global.MAX_LIVES))
