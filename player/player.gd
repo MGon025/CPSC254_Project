@@ -217,6 +217,7 @@ func _respawn():
 		set_position(_start_pos)
 		_flip_proccessing(true)
 		set_deferred("visible", true)
+		emit_signal("lives_changed")
 
 		# set default action to idle
 		_curr_action = null
