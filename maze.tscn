@@ -1723,6 +1723,7 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup"]
 frames = SubResource( 57 )
 animation = "New Anim"
+frame = 1
 playing = true
 
 [node name="powerup2" type="Area2D" parent="." groups=["powerup"]]
@@ -1735,6 +1736,7 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup2"]
 frames = SubResource( 57 )
 animation = "New Anim"
+frame = 1
 playing = true
 
 [node name="powerup3" type="Area2D" parent="." groups=["powerup"]]
@@ -1747,6 +1749,7 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup3"]
 frames = SubResource( 57 )
 animation = "New Anim"
+frame = 1
 playing = true
 
 [node name="powerup4" type="Area2D" parent="." groups=["powerup"]]
@@ -1759,7 +1762,6 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup4"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 3
 playing = true
 
 [node name="powerup5" type="Area2D" parent="." groups=["powerup"]]
@@ -1772,7 +1774,7 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup5"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 2
+frame = 3
 playing = true
 
 [node name="powerup6" type="Area2D" parent="." groups=["powerup"]]
@@ -1785,7 +1787,7 @@ shape = SubResource( 52 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="powerup6"]
 frames = SubResource( 57 )
 animation = "New Anim"
-frame = 2
+frame = 3
 playing = true
 
 [connection signal="body_entered" from="point_big" to="point_big" method="_on_big_collision"]

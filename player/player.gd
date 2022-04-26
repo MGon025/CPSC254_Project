@@ -14,6 +14,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see https://www.gnu.org/licenses/.
 
+# Mark Gonzalez
+# mgon025@csu.fullerton.edu
+
 
 extends KinematicBody2D
 
