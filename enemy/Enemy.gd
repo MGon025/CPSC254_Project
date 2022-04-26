@@ -5,6 +5,7 @@ var force: Vector2 = Vector2(speed, 0.0)
 var _current_direction: int = -1 # -1 = No Movement, 0 = UP, 1 = RIGHT, 2 = DOWN, 3 = LEFT
 
 onready var anim_tree: AnimationTree = get_node("AnimationTree")
+onready var player: KinematicBody2D = get_node("../Player")
 
 
 var _num_valid_directions: int = 0
@@ -24,10 +25,7 @@ func _physics_process(_delta):
 	if !curr_vel:
 		_current_direction = choose_direction()
 	
-	var curr_num_valid_dirs = _num_valid_directions
-	_num_valid_directions = check_num_valid_directions()
-	if curr_num_valid_dirs < _num_valid_directions:
-		_current_direction = choose_direction()
+	check_player_collision()
 
 func animation(velocity: Vector2):
 	# stop animation when velocity = (0,0)
@@ -108,3 +106,17 @@ func check_num_valid_directions() -> int:
 		num_valid += temp
 	
 	return num_valid
+	
+func die():
+	if player.position.x > 519:
+		set_position(Vector2(328, 136))
+	else:
+		set_position(Vector2(728, 136))
+
+func check_player_collision():
+	for i in get_slide_count():
+		if get_slide_collision(i).collider == player:
+			if player.powered:
+				die()
+			else:
+				player.take_life(1)
