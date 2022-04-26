@@ -21,7 +21,7 @@ extends KinematicBody2D
 signal score_changed
 signal lives_changed
 
-# received by enemy for transitioning in/out of weakened state
+# received by enemy for transitioning in/out of weakened animation
 signal powered_up
 signal powered_down
 
@@ -43,9 +43,12 @@ var _next_action = null
 onready var _start_pos = get_position()
 
 # animation nodes
-onready var _move_sprite: Sprite = get_node("Move")
-onready var _death_sprite: Sprite = get_node("Death")
-onready var _anim_tree: AnimationTree = get_node("AnimationTree")
+onready var _move_sprite = get_node("Move") as Sprite
+onready var _death_sprite = get_node("Death") as Sprite
+onready var _anim_tree = get_node("AnimationTree") as AnimationTree
+
+# for powerup
+onready var _timer = get_node("Timer") as Timer
 
 # for queueing movement
 onready var _ray_down = [get_node("RayDown1"), get_node("RayDown2")]
@@ -94,9 +97,11 @@ func power_up():
 	print("player can kill")
 	emit_signal("powered_up")
 	powered = !powered
-	$Timer.set_wait_time(_power_time)
-	$Timer.start()
-	yield($Timer, "timeout")
+
+	_timer.set_wait_time(_power_time)
+	_timer.start()
+	yield(_timer, "timeout")
+
 	powered = !powered
 	emit_signal("powered_down")
 	print("player cannot kill")
