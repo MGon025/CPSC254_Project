@@ -108,12 +108,15 @@ func check_num_valid_directions() -> int:
 	return num_valid
 	
 func die():
-	print("The enemy died!")
+	set_physics_process(false)
+	set_process_input(false)
+	set_deferred("visible", false)
+	$CollisionShape2D.set_deferred("disabled", true)
 
 func check_player_collision():
 	for i in get_slide_count():
 		if get_slide_collision(i).collider == player:
-			if player._powered:
+			if player.powered:
 				die()
 			else:
 				player.take_life(1)
