@@ -203,9 +203,10 @@ void Calculator::on_button_derivatives_clicked()
     }
 }
 
-void Calculator::on_button_integral_clicked()
+// new function for part 2
+void Calculator::on_button_history_clicked()
 {
-
+    // new function here
 }
 
 void Calculator::on_button_factorial_clicked()

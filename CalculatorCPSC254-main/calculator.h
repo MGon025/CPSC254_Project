@@ -70,7 +70,7 @@ private slots:
     void on_button_cos_clicked();
     void on_button_tan_clicked();
     void on_button_derivatives_clicked();
-    void on_button_integral_clicked();
+    void on_button_history_clicked();
     void on_button_factorial_clicked();
     void on_button_sqroot_clicked();
     void on_button_x_y_power_clicked();

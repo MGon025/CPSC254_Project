@@ -301,7 +301,7 @@
      </widget>
     </item>
     <item row="6" column="2">
-     <widget class="QPushButton" name="button_integral">
+     <widget class="QPushButton" name="button_history">
       <property name="sizePolicy">
        <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
         <horstretch>0</horstretch>
@@ -315,7 +315,7 @@
        </size>
       </property>
       <property name="text">
-       <string>∫</string>
+       <string>hist</string>
       </property>
      </widget>
     </item>
