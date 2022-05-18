@@ -206,7 +206,67 @@ void Calculator::on_button_derivatives_clicked()
 // new function for part 2
 void Calculator::on_button_history_clicked()
 {
-    // new function here
+    for (int i = 0; i < m_results.size(); i++) 
+    {
+        switch (m_operations[i])
+        {
+            case Operation::None:
+            {
+                qInfo("no op. You should not be seeing this.");
+                return;
+            }
+            case Operation::Add:
+            {
+                qInfo("%.3lf = %lf + %lf", m_results[i], m_operands[i], m_operands[i+1]);
+                break;
+            }
+            case Operation::Subtract:
+            {
+                break;
+            }
+            case Operation::Multiply:
+            {
+                break;
+            }
+            case Operation::Divide:
+            {
+                break;
+            }
+            case Operation::Factorial:
+            {
+                break;
+            }
+            case Operation::Sin:
+            {
+                break;
+            }
+            case Operation::Cos:
+            {
+                break;
+            }
+            case Operation::Tan:
+            {
+                break;
+            }
+            case Operation::Sqrt:
+            {
+                break;
+            }
+            case Operation::Sqrd:
+            {
+                break;
+            }
+            case Operation::Power:
+            {
+                break;
+            }
+            case Operation::Derivative:
+            {
+                qInfo("Derivatives not supported. You should not be seeing this");
+                return;
+            }
+        }
+    }
 }
 
 void Calculator::on_button_factorial_clicked()
@@ -258,66 +318,99 @@ void Calculator::on_button_equals_clicked()
         }
         case Operation::Add:
         {
+            m_operands.push_back(m_savedNumber);
+            m_operands.push_back(m_value);
+
             m_savedNumber += m_value;
             m_value = m_savedNumber;
             break;
         }
         case Operation::Subtract:
         {
+            m_operands.push_back(m_savedNumber);
+            m_operands.push_back(m_value);
+
             m_savedNumber -= m_value;
             m_value = m_savedNumber;
             break;
         }
         case Operation::Multiply:
         {
+            m_operands.push_back(m_savedNumber);
+            m_operands.push_back(m_value);
+
             m_savedNumber *= m_value;
             m_value = m_savedNumber;
             break;
         }
         case Operation::Divide:
         {
+            m_operands.push_back(m_savedNumber);
+            m_operands.push_back(m_value);
+
             m_savedNumber /= m_value;
             m_value = m_savedNumber;
             break;
         }
         case Operation::Factorial:
         {
+            m_operands.push_back(m_savedNumber);
+            m_operands.push_back(m_savedNumber);
+
             m_savedNumber = CalcFactorial();
             m_value = m_savedNumber;
             break;
         }
         case Operation::Sin:
         {
+            m_operands.push_back(m_value);
+            m_operands.push_back(m_value);
+
             m_savedNumber = qSin(qreal(m_value));
             m_value = m_savedNumber;
             break;
         }
         case Operation::Cos:
         {
+            m_operands.push_back(m_value);
+            m_operands.push_back(m_value);
+
             m_savedNumber = qCos(qreal(m_value));
             m_value = m_savedNumber;
             break;
         }
         case Operation::Tan:
         {
+            m_operands.push_back(m_value);
+            m_operands.push_back(m_value);
+
             m_savedNumber = qTan(qreal(m_value));
             m_value = m_savedNumber;
             break;
         }
         case Operation::Sqrt:
         {
+            m_operands.push_back(m_value);
+            m_operands.push_back(m_value);
+
             m_savedNumber = qSqrt(m_value);
             m_value = m_savedNumber;
             break;
         }
         case Operation::Sqrd:
         {
+            m_operands.push_back(m_value);
+            m_operands.push_back(m_value);
+
             m_savedNumber = m_value * m_value;
             m_value = m_savedNumber;
             break;
         }
         case Operation::Power:
         {
+            m_operands.push_back(m_savedNumber);
+            m_operands.push_back(m_value);
+
             m_savedNumber = qPow(m_savedNumber, m_value);
             m_value = m_savedNumber;
             break;
@@ -332,6 +425,12 @@ void Calculator::on_button_equals_clicked()
     ui->results_display->clear();
     ui->results_display->setAlignment(Qt::AlignRight);
     ui->results_display->insertPlainText(QString::number(m_value));
+
+    m_results.push_back(m_value);
+    if (m_currentOperation != Operation::Derivative)
+    {
+        m_operations.push_back(m_currentOperation);
+    }
 
     m_startingNewValue = true;
 }

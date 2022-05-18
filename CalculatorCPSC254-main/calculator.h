@@ -90,6 +90,9 @@ private:
     Ui::Calculator *ui;
     double m_value = 0;
     double m_savedNumber = 0;
+    std::vector<double> m_results = {999};
+    std::vector<double> m_operands = {333, 666};
+    std::vector<Operation> m_operations = {Operation::Add};
     std::string m_polynomial;
     bool m_startingNewValue = false;
     bool m_startingDerivative = false;
