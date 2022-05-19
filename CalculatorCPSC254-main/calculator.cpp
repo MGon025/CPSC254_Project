@@ -368,8 +368,6 @@ void Calculator::on_button_equals_clicked()
         }
         case Operation::Multiply:
         {
-            qInfo("%lf", m_savedNumber);
-            qInfo("%lf", m_value);
             m_operands.push(m_savedNumber);
             m_operands.push(m_value);
 
