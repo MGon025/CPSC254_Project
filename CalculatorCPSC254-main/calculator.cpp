@@ -213,6 +213,10 @@ void Calculator::on_button_history_clicked()
         // do nothing if closing history window
         return;
     }
+}
+
+void Calculator::UpdateHistory()
+{
     while (!(m_results.empty())) 
     {
         char *hist_str;
@@ -253,32 +257,32 @@ void Calculator::on_button_history_clicked()
             }
             case Operation::Factorial:
             {
-                asprintf(&hist_str, "%.10g = !%.10g", result, op1, op2);
+                asprintf(&hist_str, "%.10g = !%.10g", result, op1);
                 break;
             }
             case Operation::Sin:
             {
-                asprintf(&hist_str, "%.10g = sin(%.10g)", result, op1, op2);
+                asprintf(&hist_str, "%.10g = sin(%.10g)", result, op1);
                 break;
             }
             case Operation::Cos:
             {
-                asprintf(&hist_str, "%.10g = cos(%.10g)", result, op1, op2);
+                asprintf(&hist_str, "%.10g = cos(%.10g)", result, op1);
                 break;
             }
             case Operation::Tan:
             {
-                asprintf(&hist_str, "%.10g = tan(%.10g)", result, op1, op2);
+                asprintf(&hist_str, "%.10g = tan(%.10g)", result, op1);
                 break;
             }
             case Operation::Sqrt:
             {
-                asprintf(&hist_str, "%.10g = sqrt(%.10g)", result, op1, op2);
+                asprintf(&hist_str, "%.10g = sqrt(%.10g)", result, op1);
                 break;
             }
             case Operation::Sqrd:
             {
-                asprintf(&hist_str, "%.10g = sqr(%.10g)", result, op1, op2);
+                asprintf(&hist_str, "%.10g = sqr(%.10g)", result, op1);
                 break;
             }
             case Operation::Power:
@@ -461,6 +465,7 @@ void Calculator::on_button_equals_clicked()
     {
         m_operations.push(m_currentOperation);
     }
+    UpdateHistory();
 
     m_startingNewValue = true;
 }

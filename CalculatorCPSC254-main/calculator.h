@@ -86,6 +86,7 @@ private:
     int CalcFactorial();
     void SavePolynomial();
     void CalculateDerivative();
+    void UpdateHistory();
 
 private:
     Ui::Calculator *ui;
