@@ -1,4 +1,0 @@
-/home/student/Desktop/254/CPSC254_Project/build-CalculatorCPSC254-main-Desktop-Debug/CMakeFiles/rebuild_cache.dir
-/home/student/Desktop/254/CPSC254_Project/build-CalculatorCPSC254-main-Desktop-Debug/CMakeFiles/edit_cache.dir
-/home/student/Desktop/254/CPSC254_Project/build-CalculatorCPSC254-main-Desktop-Debug/CMakeFiles/Calculator.dir
-/home/student/Desktop/254/CPSC254_Project/build-CalculatorCPSC254-main-Desktop-Debug/CMakeFiles/Calculator_autogen.dir
