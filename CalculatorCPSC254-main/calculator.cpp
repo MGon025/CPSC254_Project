@@ -25,6 +25,7 @@ Calculator::Calculator(QWidget *parent)
     ui->setupUi(this);
 
     ui->results_display->setAlignment(Qt::AlignRight);
+    ui->history->setVisible(false);
 }
 
 Calculator::~Calculator()
@@ -206,9 +207,24 @@ void Calculator::on_button_derivatives_clicked()
 // new function for part 2
 void Calculator::on_button_history_clicked()
 {
-    for (int i = 0; i < m_results.size(); i++) 
+    ui->history->setVisible(!(ui->history->isVisible()));
+    if (!(ui->history->isVisible()))
     {
-        switch (m_operations[i])
+        // do nothing if closing history window
+        return;
+    }
+    while (!(m_results.empty())) 
+    {
+        char *hist_str;
+        double result = m_results.front();
+        m_results.pop();
+        double op1 = m_operands.front();
+        m_operands.pop();
+        double op2 = m_operands.front();
+        m_operands.pop();
+        Operation opcode = m_operations.front();
+        m_operations.pop();
+        switch (opcode)
         {
             case Operation::None:
             {
@@ -217,57 +233,57 @@ void Calculator::on_button_history_clicked()
             }
             case Operation::Add:
             {
-                qInfo("%.3lf = %lf + %lf", m_results[i], m_operands[i*2], m_operands[(i*2)+1]);
+                asprintf(&hist_str, "%.10g = %.10g + %.10g", result, op1, op2);
                 break;
             }
             case Operation::Subtract:
             {
-                qInfo("%.3lf = %lf - %lf", m_results[i], m_operands[i*2], m_operands[(i*2)+1]);
+                asprintf(&hist_str, "%.10g = %.10g - %.10g", result, op1, op2);
                 break;
             }
             case Operation::Multiply:
             {
-                qInfo("%.3lf = %lf * %lf", m_results[i], m_operands[i*2], m_operands[(i*2)+1]);
+                asprintf(&hist_str, "%.10g = %.10g * %.10g", result, op1, op2);
                 break;
             }
             case Operation::Divide:
             {
-                qInfo("%.3lf = %lf / %lf", m_results[i], m_operands[i*2], m_operands[(i*2)+1]);
+                asprintf(&hist_str, "%.10g = %.10g / %.10g", result, op1, op2);
                 break;
             }
             case Operation::Factorial:
             {
-                qInfo("%.3lf = !%lf", m_results[i], m_operands[i*2]);
+                asprintf(&hist_str, "%.10g = !%.10g", result, op1, op2);
                 break;
             }
             case Operation::Sin:
             {
-                qInfo("%.3lf = sin(%lf)", m_results[i], m_operands[i*2]);
+                asprintf(&hist_str, "%.10g = sin(%.10g)", result, op1, op2);
                 break;
             }
             case Operation::Cos:
             {
-                qInfo("%.3lf = cos(%lf)", m_results[i], m_operands[i*2]);
+                asprintf(&hist_str, "%.10g = cos(%.10g)", result, op1, op2);
                 break;
             }
             case Operation::Tan:
             {
-                qInfo("%.3lf = tan(%lf)", m_results[i], m_operands[i*2]);
+                asprintf(&hist_str, "%.10g = tan(%.10g)", result, op1, op2);
                 break;
             }
             case Operation::Sqrt:
             {
-                qInfo("%.3lf = sqrt(%lf)", m_results[i], m_operands[i*2]);
+                asprintf(&hist_str, "%.10g = sqrt(%.10g)", result, op1, op2);
                 break;
             }
             case Operation::Sqrd:
             {
-                qInfo("%.3lf = sqrd(%lf)", m_results[i], m_operands[i*2]);
+                asprintf(&hist_str, "%.10g = sqr(%.10g)", result, op1, op2);
                 break;
             }
             case Operation::Power:
             {
-                qInfo("%.3lf = pow(%lf, %lf)", m_results[i], m_operands[i*2], m_operands[(i*2)+1]);
+                asprintf(&hist_str, "%.10g = pow(%.10g, %.10g)", result, op1, op2);
                 break;
             }
             case Operation::Derivative:
@@ -276,6 +292,8 @@ void Calculator::on_button_history_clicked()
                 return;
             }
         }
+        ui->history->addItem(hist_str);
+        free(hist_str);
     }
 }
 
@@ -328,8 +346,8 @@ void Calculator::on_button_equals_clicked()
         }
         case Operation::Add:
         {
-            m_operands.push_back(m_savedNumber);
-            m_operands.push_back(m_value);
+            m_operands.push(m_savedNumber);
+            m_operands.push(m_value);
 
             m_savedNumber += m_value;
             m_value = m_savedNumber;
@@ -337,8 +355,8 @@ void Calculator::on_button_equals_clicked()
         }
         case Operation::Subtract:
         {
-            m_operands.push_back(m_savedNumber);
-            m_operands.push_back(m_value);
+            m_operands.push(m_savedNumber);
+            m_operands.push(m_value);
 
             m_savedNumber -= m_value;
             m_value = m_savedNumber;
@@ -346,8 +364,10 @@ void Calculator::on_button_equals_clicked()
         }
         case Operation::Multiply:
         {
-            m_operands.push_back(m_savedNumber);
-            m_operands.push_back(m_value);
+            qInfo("%lf", m_savedNumber);
+            qInfo("%lf", m_value);
+            m_operands.push(m_savedNumber);
+            m_operands.push(m_value);
 
             m_savedNumber *= m_value;
             m_value = m_savedNumber;
@@ -355,8 +375,8 @@ void Calculator::on_button_equals_clicked()
         }
         case Operation::Divide:
         {
-            m_operands.push_back(m_savedNumber);
-            m_operands.push_back(m_value);
+            m_operands.push(m_savedNumber);
+            m_operands.push(m_value);
 
             m_savedNumber /= m_value;
             m_value = m_savedNumber;
@@ -364,8 +384,8 @@ void Calculator::on_button_equals_clicked()
         }
         case Operation::Factorial:
         {
-            m_operands.push_back(m_value);
-            m_operands.push_back(m_value);
+            m_operands.push(m_value);
+            m_operands.push(m_value);
 
             m_savedNumber = CalcFactorial();
             m_value = m_savedNumber;
@@ -373,8 +393,8 @@ void Calculator::on_button_equals_clicked()
         }
         case Operation::Sin:
         {
-            m_operands.push_back(m_value);
-            m_operands.push_back(m_value);
+            m_operands.push(m_value);
+            m_operands.push(m_value);
 
             m_savedNumber = qSin(qreal(m_value));
             m_value = m_savedNumber;
@@ -382,8 +402,8 @@ void Calculator::on_button_equals_clicked()
         }
         case Operation::Cos:
         {
-            m_operands.push_back(m_value);
-            m_operands.push_back(m_value);
+            m_operands.push(m_value);
+            m_operands.push(m_value);
 
             m_savedNumber = qCos(qreal(m_value));
             m_value = m_savedNumber;
@@ -391,8 +411,8 @@ void Calculator::on_button_equals_clicked()
         }
         case Operation::Tan:
         {
-            m_operands.push_back(m_value);
-            m_operands.push_back(m_value);
+            m_operands.push(m_value);
+            m_operands.push(m_value);
 
             m_savedNumber = qTan(qreal(m_value));
             m_value = m_savedNumber;
@@ -400,8 +420,8 @@ void Calculator::on_button_equals_clicked()
         }
         case Operation::Sqrt:
         {
-            m_operands.push_back(m_value);
-            m_operands.push_back(m_value);
+            m_operands.push(m_value);
+            m_operands.push(m_value);
 
             m_savedNumber = qSqrt(m_value);
             m_value = m_savedNumber;
@@ -409,8 +429,8 @@ void Calculator::on_button_equals_clicked()
         }
         case Operation::Sqrd:
         {
-            m_operands.push_back(m_value);
-            m_operands.push_back(m_value);
+            m_operands.push(m_value);
+            m_operands.push(m_value);
 
             m_savedNumber = m_value * m_value;
             m_value = m_savedNumber;
@@ -418,8 +438,8 @@ void Calculator::on_button_equals_clicked()
         }
         case Operation::Power:
         {
-            m_operands.push_back(m_savedNumber);
-            m_operands.push_back(m_value);
+            m_operands.push(m_savedNumber);
+            m_operands.push(m_value);
 
             m_savedNumber = qPow(m_savedNumber, m_value);
             m_value = m_savedNumber;
@@ -436,10 +456,10 @@ void Calculator::on_button_equals_clicked()
     ui->results_display->setAlignment(Qt::AlignRight);
     ui->results_display->insertPlainText(QString::number(m_value));
 
-    m_results.push_back(m_value);
+    m_results.push(m_value);
     if (m_currentOperation != Operation::Derivative)
     {
-        m_operations.push_back(m_currentOperation);
+        m_operations.push(m_currentOperation);
     }
 
     m_startingNewValue = true;

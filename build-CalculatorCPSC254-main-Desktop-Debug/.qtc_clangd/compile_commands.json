@@ -3,7 +3,7 @@
     "arguments": [
         "clang",
         "-I",
-        "/tmp/QtCreator-FiiisU/clang-uiheader-hGvkgL",
+        "/tmp/QtCreator-LqJFAF/clang-uiheader-QhCobb",
         "-nostdinc",
         "-nostdinc++",
         "-g",
@@ -65,7 +65,7 @@
     "arguments": [
         "clang",
         "-I",
-        "/tmp/QtCreator-FiiisU/clang-uiheader-hGvkgL",
+        "/tmp/QtCreator-LqJFAF/clang-uiheader-QhCobb",
         "-nostdinc",
         "-nostdinc++",
         "-g",
@@ -127,7 +127,7 @@
     "arguments": [
         "clang",
         "-I",
-        "/tmp/QtCreator-FiiisU/clang-uiheader-hGvkgL",
+        "/tmp/QtCreator-LqJFAF/clang-uiheader-QhCobb",
         "-nostdinc",
         "-nostdinc++",
         "-g",
