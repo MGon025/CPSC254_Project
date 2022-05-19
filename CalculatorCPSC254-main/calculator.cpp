@@ -217,47 +217,57 @@ void Calculator::on_button_history_clicked()
             }
             case Operation::Add:
             {
-                qInfo("%.3lf = %lf + %lf", m_results[i], m_operands[i], m_operands[i+1]);
+                qInfo("%.3lf = %lf + %lf", m_results[i], m_operands[i*2], m_operands[(i*2)+1]);
                 break;
             }
             case Operation::Subtract:
             {
+                qInfo("%.3lf = %lf - %lf", m_results[i], m_operands[i*2], m_operands[(i*2)+1]);
                 break;
             }
             case Operation::Multiply:
             {
+                qInfo("%.3lf = %lf * %lf", m_results[i], m_operands[i*2], m_operands[(i*2)+1]);
                 break;
             }
             case Operation::Divide:
             {
+                qInfo("%.3lf = %lf / %lf", m_results[i], m_operands[i*2], m_operands[(i*2)+1]);
                 break;
             }
             case Operation::Factorial:
             {
+                qInfo("%.3lf = !%lf", m_results[i], m_operands[i*2]);
                 break;
             }
             case Operation::Sin:
             {
+                qInfo("%.3lf = sin(%lf)", m_results[i], m_operands[i*2]);
                 break;
             }
             case Operation::Cos:
             {
+                qInfo("%.3lf = cos(%lf)", m_results[i], m_operands[i*2]);
                 break;
             }
             case Operation::Tan:
             {
+                qInfo("%.3lf = tan(%lf)", m_results[i], m_operands[i*2]);
                 break;
             }
             case Operation::Sqrt:
             {
+                qInfo("%.3lf = sqrt(%lf)", m_results[i], m_operands[i*2]);
                 break;
             }
             case Operation::Sqrd:
             {
+                qInfo("%.3lf = sqrd(%lf)", m_results[i], m_operands[i*2]);
                 break;
             }
             case Operation::Power:
             {
+                qInfo("%.3lf = pow(%lf, %lf)", m_results[i], m_operands[i*2], m_operands[(i*2)+1]);
                 break;
             }
             case Operation::Derivative:
@@ -354,8 +364,8 @@ void Calculator::on_button_equals_clicked()
         }
         case Operation::Factorial:
         {
-            m_operands.push_back(m_savedNumber);
-            m_operands.push_back(m_savedNumber);
+            m_operands.push_back(m_value);
+            m_operands.push_back(m_value);
 
             m_savedNumber = CalcFactorial();
             m_value = m_savedNumber;

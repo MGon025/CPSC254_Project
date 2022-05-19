@@ -1,0 +1,11 @@
+# ninja log v5
+0	173	0	CMakeFiles/Calculator_autogen	765d839b82c22664
+0	173	0	Calculator_autogen/mocs_compilation.cpp	765d839b82c22664
+0	173	0	Calculator_autogen/include/ui_calculator.h	765d839b82c22664
+0	173	0	/home/student/Desktop/254/CPSC254_Project/build-CalculatorCPSC254-main-Desktop-Debug/CMakeFiles/Calculator_autogen	765d839b82c22664
+0	173	0	/home/student/Desktop/254/CPSC254_Project/build-CalculatorCPSC254-main-Desktop-Debug/Calculator_autogen/mocs_compilation.cpp	765d839b82c22664
+0	173	0	/home/student/Desktop/254/CPSC254_Project/build-CalculatorCPSC254-main-Desktop-Debug/Calculator_autogen/include/ui_calculator.h	765d839b82c22664
+174	3465	1652988108254276254	CMakeFiles/Calculator.dir/Calculator_autogen/mocs_compilation.cpp.o	dde033a3d8f89239
+179	3731	1652988108522321858	CMakeFiles/Calculator.dir/main.cpp.o	11f753f720f8c71
+180	3944	1652988108730357254	CMakeFiles/Calculator.dir/calculator.cpp.o	306c7b98f068dda3
+3944	4474	1652988109258447118	Calculator	defdc92ae2e61131
